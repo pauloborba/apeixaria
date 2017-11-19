@@ -21,7 +21,7 @@ export class CadastroDePedidos {
     return this.pedidos;
   }
 
-  getPedido(codigo: String){
+  getPedido(codigo: string){
   	var result: Pedido = this.pedidos.find(a => a.cpf == pedido.cpf);
     return result;
   }
