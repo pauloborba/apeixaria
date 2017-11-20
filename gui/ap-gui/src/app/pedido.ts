@@ -25,14 +25,14 @@ export class Pedido {
     this.lista = [];
     this.valorTotal = 0;
     this.desconto =0;
-    tipoDesconto = "";
-    dataPedido = new Date();
-    dataEntrega = new Date();
-    condicaoPagamento = "";
-    localRetirada = "";
-    cancelado = false;
-    entregue = false;
-    pago = false;
+    this.tipoDesconto = "";
+    this.dataPedido = new Date();
+    this.dataEntrega = new Date();
+    this.condicaoPagamento = "";
+    this.localRetirada = "";
+    this.cancelado = false;
+    this.entregue = false;
+    this.pago = false;
   }
 
   clone(): Pedido {
