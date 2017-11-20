@@ -57,7 +57,7 @@ export class Pedido {
   }
 
   copyListaFrom(from: ItemDeCompra[]): void {
-    this.lista = []];
+    this.lista = [];
     for i in from {
       this.lista[i] = from[i];
     }
