@@ -17,12 +17,6 @@ export class Endereco {
       this.ponto_referencia = '';
     }
 
-    clone(): Endereco {
-      const endereco: Endereco = new Endereco();
-      endereco.copyFrom(this);
-      return endereco;
-    }
-
     copyFrom(from: Endereco): void {
       this.rua = from.rua;
       this.numero = from.numero;
