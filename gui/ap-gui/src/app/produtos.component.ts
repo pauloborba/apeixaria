@@ -22,7 +22,7 @@ export class ProdutosComponent implements OnInit {
    deletarProduto(p: Produto): void {
     
    }
-   alterarProduto(cod: number, novoPreco: number): void {
+   alterarValor(cod: number, novoPreco: number): void {
     
    }
    buscarProduto(cod: number): Produto {
