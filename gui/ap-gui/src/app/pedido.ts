@@ -3,6 +3,7 @@ import { Cliente } from './cliente';
 import { ItemDeCompra } from './itemdecompra';
 
 export class Pedido {
+  codigo: number;
   cliente: Cliente;
   lista: ItemDeCompra[];
   valorTotal: decimal;
@@ -21,6 +22,7 @@ export class Pedido {
   }
 
   clean(): void {
+    this.codigo=0;
     this.cliente= new Cliente();
     this.lista = [];
     this.valorTotal = 0;
@@ -42,6 +44,7 @@ export class Pedido {
   }
 
   copyFrom(from: Pedido): void {
+    this.codigo= from.codigo;
     this.cliente = from.cliente;
     this.valorTotal = from.valorTotal;
     this.desconto=from.desconto;

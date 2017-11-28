@@ -1,12 +1,7 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import {Pedido} from '../../gui/ap-gui/src/app/pedido';
-import {CadastroDePedidos} from './cadastrodepedidos';
-
 var app = express();
-
-var cadastro: CadastroDePedidos = new CadastroDePedidos();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
     res.header('Access-Control-Allow-Origin', "*");

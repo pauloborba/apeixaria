@@ -1,13 +1,13 @@
 <div class="body">
 		<div id="sidenav" class="sidenav">
 			<span>A Peixaria</span>
-			<a href="#">Clientes</a>
-			<a href="#">Produtos</a>
-			<a href="#">Registrar pedido</a>
-		 	<a href="#">Pedidos pendentes</a>
-		 	<a href="#">Histórico</a>
+			<a name="clientes" routerlink="/clientes">Clientes</a>
+			<a name="produtos" routerlink="/produtos">Produtos</a>
+			<a name="cadastropedido" routerlink="/cadastropedido">Registrar pedido</a>
+		 	<a name="pedidos" routerlink="/pedidos">Pedidos pendentes</a>
+		 	<a name="historico" routerlink="/historico">Histórico</a>
 		</div>
 		<div class = "pageContent">
-			<router-outlet</router-outlet>
+			<router-outlet></router-outlet>
 		</div>
  <div>

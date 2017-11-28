@@ -3,7 +3,7 @@ Import { Produto } from ‘./cliente’;
 export class ItemDeCompra {
 	produto: Produto;
 	quantidade: number;
-	unidade: string;
+	valor: string;
 
 	constructor() {
 		this.clean();
@@ -12,7 +12,7 @@ export class ItemDeCompra {
 	clean(): void {
 		this.produto = new Produto();
 		this.quantidade = 0;
-		this.unidade = "";
+		this.valor = "";
 	}
 
 	clone(): ItemDeCompra {
@@ -24,7 +24,7 @@ export class ItemDeCompra {
  	copyFrom(from: ItemDeCompra): void {
  		this.produto = from.produto;
  		this.quantidade = from.quantidade;
- 		this.unidade = from.unidade;
+ 		this.valor = from.valor;
  	}
 
 	getProduto(): Produto {
@@ -35,8 +35,8 @@ export class ItemDeCompra {
 		return this.quantidade;
 	}
 
-	getUnidade(): unidade {
-		return this.unidade;
+	getValor(): valor {
+		return this.valor;
 	}
 
 	setProduto(produto: Produto) {
@@ -47,8 +47,8 @@ export class ItemDeCompra {
 		this.quantidade = quantidade;
 	}
 
-	setUnidade(unidade: string) {
-		this.unidade = unidade;
+	setValor(valor: string) {
+		this.valor = valor;
 	}
 	
 }
