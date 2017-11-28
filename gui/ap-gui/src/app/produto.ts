@@ -10,9 +10,9 @@ export class Produto {
   }
 
   clean(): void {
-    this.codigo = null;
+    this.codigo = 0;
     this.nome = '';
-    this.valor = null;
+    this.valor = 0;
     this.unid = '';
     this.categoria = '';
 
@@ -31,8 +31,5 @@ export class Produto {
     this.unid = from.unid;
     this.categoria = from.categoria;
   }
-
-}
-
 
 }

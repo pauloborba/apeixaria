@@ -19,8 +19,17 @@ body {
     display:flex;
     flex-direction: column;
     align-items: center;
+    justify-content: top;
     overflow-x: hidden;
     transition: 0.5s;
+}
+
+#options{
+    height: 70%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-around; 
 }
 
 .sidenav a {
@@ -28,6 +37,12 @@ body {
     text-decoration: none;
     color: #fefefe; 
     transition: 0.3s;
+    border-top: solid 2px white;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .sidenav a:hover {
@@ -53,7 +68,7 @@ body {
 
 
 .sidenav span{
-padding-top: 25px;
+padding: 25px;
 font-size: 30px;
 color: #fefefe;
 }

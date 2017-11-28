@@ -6,8 +6,8 @@ export class Pedido {
   codigo: number;
   cliente: Cliente;
   lista: ItemDeCompra[];
-  valorTotal: decimal;
-  desconto: decimal;
+  valorTotal: number;
+  desconto: number;
   tipoDesconto: string;
   dataPedido: Date;
   dataEntrega: Date;
@@ -27,14 +27,14 @@ export class Pedido {
     this.lista = [];
     this.valorTotal = 0;
     this.desconto =0;
-    tipoDesconto = "";
-    dataPedido = new Date();
-    dataEntrega = new Date();
-    condicaoPagamento = "";
-    localRetirada = "";
-    cancelado = false;
-    entregue = false;
-    pago = false;
+    this.tipoDesconto = "";
+    this.dataPedido = new Date();
+    this.dataEntrega = new Date();
+    this.condicaoPagamento = "";
+    this.localRetirada = "";
+    this.cancelado = false;
+    this.entregue = false;
+    this.pago = false;
   }
 
   clone(): Pedido {
@@ -61,7 +61,7 @@ export class Pedido {
 
   copyListaFrom(from: ItemDeCompra[]): void {
     this.lista = [];
-    for i in from {
+    for (var i=0; i<from.length;i++){
       this.lista[i] = from[i];
     }
   }

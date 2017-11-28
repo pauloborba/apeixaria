@@ -1,11 +1,14 @@
 <div class="body">
 		<div id="sidenav" class="sidenav">
 			<span>A Peixaria</span>
-			<a name="clientes" routerlink="/clientes">Clientes</a>
-			<a name="produtos" routerlink="/produtos">Produtos</a>
-			<a name="cadastropedido" routerlink="/cadastropedido">Registrar pedido</a>
-		 	<a name="pedidos" routerlink="/pedidos">Pedidos pendentes</a>
-		 	<a name="historico" routerlink="/historico">Histórico</a>
+			<div id="options">
+				<a name="clientes" routerlink="/clientes"><p>Clientes</p></a>
+				<a name="cadastrocliente" routerlink="/cadastrocliente"><p>Cadastrar Cliente</p></a>
+				<a name="produtos" routerlink="/produtos"><p>Produtos</p></a>
+				<a name="cadastropedido" routerlink="/cadastropedido"><p>Registrar pedido</p></a>
+			 	<a name="pedidos" routerlink="/pedidos"><p>Pedidos pendentes</p></a>
+			 	<a name="historico" routerlink="/historico"><p>Histórico</p></a>
+		 	</div>
 		</div>
 		<div class = "pageContent">
 			<router-outlet></router-outlet>

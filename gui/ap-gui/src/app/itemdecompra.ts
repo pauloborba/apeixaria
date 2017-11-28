@@ -1,9 +1,9 @@
-Import { Produto } from ‘./cliente’;
+import { Produto } from './produto';
 
 export class ItemDeCompra {
 	produto: Produto;
 	quantidade: number;
-	valor: string;
+	valor: number;
 
 	constructor() {
 		this.clean();
@@ -12,7 +12,7 @@ export class ItemDeCompra {
 	clean(): void {
 		this.produto = new Produto();
 		this.quantidade = 0;
-		this.valor = "";
+		this.valor = 0;
 	}
 
 	clone(): ItemDeCompra {
@@ -31,11 +31,11 @@ export class ItemDeCompra {
 		return this.produto;
 	}
 
-	getQuantidade(): quantidade {
+	getQuantidade(): number {
 		return this.quantidade;
 	}
 
-	getValor(): valor {
+	getValor(): number {
 		return this.valor;
 	}
 
@@ -47,7 +47,7 @@ export class ItemDeCompra {
 		this.quantidade = quantidade;
 	}
 
-	setValor(valor: string) {
+	setValor(valor: number) {
 		this.valor = valor;
 	}
 	
