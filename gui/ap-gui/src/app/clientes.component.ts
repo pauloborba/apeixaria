@@ -31,14 +31,19 @@ export class ClientesComponent implements OnInit {
     this.verify(c.cpf_cnpj, 'CPF_ou_CNPJInput');
 
     if (c.lojista === c.consumidor_final) {
+      this.completo = false;
       document.getElementById('consumidor_finalLabel').style.color = 'red';
       document.getElementById('lojistaLabel').style.color = 'red';
+    } else {
+      document.getElementById('consumidor_finalLabel').style.color = '#0f82c1';
+      document.getElementById('lojistaLabel').style.color = '#0f82c1';
     }
 
    }
 
    verify(c: string, s: string): void {
     if (this.nullorEmpty(c)) {
+      this.completo = false;
       this.pintaCampo(s);
     } else {
       document.getElementById(s).style.backgroundColor = 'white';
@@ -50,15 +55,31 @@ export class ClientesComponent implements OnInit {
    }
 
    pintaCampo(s: string): void {
-    this.completo = false;
     document.getElementById(s).style.backgroundColor = 'red';
    }
 
+   isNumber(n: string): boolean {
+    return !isNaN(parseFloat(n)) && /^\d+$/.test(n);
+   }
 
    criarCliente(c: Cliente): void {
      this.completo = true;
+     this.invalido = false;
      this.verificaCampos(c);
      if (this.completo) {
+      if (!this.isNumber(c.cpf_cnpj)) {
+        this.invalido = true;
+        this.pintaCampo('CPF_ou_CNPJInput');
+       }
+      if (!this.isNumber(c.telefone)) {
+        this.invalido = true;
+        this.pintaCampo('telefoneInput');
+      }
+      if (!this.isNumber(c.endereco.numero)) {
+        this.invalido = true;
+        this.pintaCampo('numeroInput');
+      }
+      if (!this.invalido) {
         this.clienteService.criar(c)
         .then(ab => {
            if (ab) {
@@ -71,6 +92,7 @@ export class ClientesComponent implements OnInit {
         .catch(erro => alert(erro));
       }
      }
+   }
 
    ngOnInit(): void {
      this.clienteService.getClientes()
