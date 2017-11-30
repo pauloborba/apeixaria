@@ -27,6 +27,16 @@ describe("O cadastro de alunos", () => {
     expect(prod.unid).toBe("kg");
     expect(prod.categoria).toBe("camaroes");
   })
+  it("não aceita produtos com campo em branco", () => {
+    var prod: Produto = new Produto();
+    prod.codigo = "001"
+    prod.nome = "camarao cinza";
+    prod.unid = "kg";
+    prod.categoria = "camarões"
+    cadastro.criar(prod);
+    expect(cadastro.getProdutos().length).toBe(0);
+  })
+
 
 
 })
