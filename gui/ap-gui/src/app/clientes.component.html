@@ -56,19 +56,19 @@
     </tr>        
    
     </table>
-    <p *ngIf="!completo" name = "campoObrigatorio" style="color: red">
+    <p *ngIf="!completo" name = "campoObrigatorio">
         Campo obrigatório não preenchido!
     </p>
-    <p *ngIf="invalido" name = "campoInvalido" style="color: red">
+    <p *ngIf="invalido" name = "campoInvalido">
         Campo inválido!
     </p>
-    <p *ngIf="cpf_cnpjduplicado" name = "clienteJaExistente" style="color: red">
+    <p *ngIf="cpf_cnpjduplicado" name = "clienteJaExistente">
         Já existe um cliente com esse CPF ou CNPJ!
     </p>
-    <p *ngIf="atualizado" name = "clienteAtualizado" style="color: red">
+    <p *ngIf="atualizado" name = "clienteAtualizado">
         Cliente Atualizado!
     </p>
-    <p *ngIf="cancelAlt" name = "clienteNaoAtualizado" style="color: red">
+    <p *ngIf="cancelAlt" name = "clienteNaoAtualizado">
         Cliente não atualizado!
     </p> 
     </html>

@@ -22,38 +22,33 @@ export class ClientesComponent implements OnInit {
 
    verificaCampos(c: Cliente): void {
     this.completo = true;
-    if (c.nome === '' || c.nome === null) {
-      this.completo = false;
-      document.getElementById('nomeInput').style.backgroundColor = 'red';
-    }
-    if (c.telefone === '' ||  c.telefone === null) {
-      this.completo = false;
-      document.getElementById('telefoneInput').style.backgroundColor = 'red';
-    }
-    if (c.endereco.rua === '' || c.endereco.rua === null) {
-      this.completo = false;
-      document.getElementById('ruaInput').style.backgroundColor = 'red';
-    }
-    if (c.endereco.numero === '' ||  c.endereco.numero === null) {
-      this.completo = false;
-      document.getElementById('numeroInput').style.backgroundColor = 'red';
-    }
-    if (c.endereco.cidade === '' || c.endereco.cidade === null) {
-      this.completo = false;
-      document.getElementById('cidadeInput').style.backgroundColor = 'red';
-    }
-    if (c.cpf_cnpj === '' ||  c.cpf_cnpj === null) {
-      this.completo = false;
-      document.getElementById('CPF_ou_CNPJInput').style.backgroundColor = 'red';
-    }
+
+    this.verify(c.nome, 'nomeInput');
+    this.verify(c.telefone, 'telefoneInput');
+    this.verify(c.endereco.rua, 'ruaInput');
+    this.verify(c.endereco.numero, 'numeroInput');
+    this.verify(c.endereco.cidade, 'cidadeInput');
+    this.verify(c.cpf_cnpj, 'CPU_ou_CNPJInput');
+
     if (c.lojista === c.consumidor_final) {
-      this.completo = false;
-      document.getElementById('consumidor_final').style.backgroundColor = 'red';
-      document.getElementById('lojista').style.backgroundColor = 'red';
+      this.pintaCampo('lojista');
+      this.pintaCampo('consumidor_final');
     }
 
    }
 
+   verify(c: string, s: string): void {
+    if (this.nullorEmpty(c)) {this.pintaCampo(s); }
+   }
+
+   nullorEmpty(s: string): boolean {
+    if (s === '' || s === null) {return true; }
+   }
+
+   pintaCampo(s: string): void {
+    this.completo = false;
+    document.getElementById(s).style.backgroundColor = 'red';
+   }
 
    criarCliente(c: Cliente): void {
      this.completo = true;
