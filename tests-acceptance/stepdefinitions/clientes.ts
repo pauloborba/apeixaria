@@ -70,8 +70,8 @@ defineSupportCode(function ({ Given, When, Then }) {
 
     Then(/^vejo o campo “([^0-9]*)” destacado$/, async(campo) => {
         campo = <string> campo;                
-        const campoInput = campo.replace(/\s/g, '_') + 'Input';
-        await expect($("input[id = " + campoInput + "]").getCssValue('background-color')).to.eventually.equal('rgba(255, 0, 0, 1)');
+        const campoLabel = campo.replace(/\s/g, '_') + 'Label';
+        await expect($("label[id = " + campoLabel + "]").getCssValue('color')).to.eventually.equal('rgba(255, 0, 0, 1)');
     });
 
 

@@ -22,21 +22,25 @@ export class ClientesComponent implements OnInit {
 
    verificaCampos(c: Cliente): void {
     this.completo = true;
+    this.invalido = false;
 
-    this.verify(c.nome, 'nomeInput');
-    this.verify(c.telefone, 'telefoneInput');
-    this.verify(c.endereco.rua, 'ruaInput');
-    this.verify(c.endereco.numero, 'numeroInput');
-    this.verify(c.endereco.cidade, 'cidadeInput');
-    this.verify(c.cpf_cnpj, 'CPF_ou_CNPJInput');
+    this.verify(c.nome, 'nomeLabel');
+    this.verify(c.telefone, 'telefoneLabel');
+    this.verify(c.endereco.rua, 'ruaLabel');
+    this.verify(c.endereco.numero, 'numeroLabel');
+    this.verify(c.endereco.cidade, 'cidadeLabel');
+    this.verify(c.cpf_cnpj, 'CPF_ou_CNPJLabel');
+    this.campoInvalido(c.cpf_cnpj, 'CPF_ou_CNPJLabel');
+    this.campoInvalido(c.telefone, 'telefoneLabel');
+    this.campoInvalido(c.endereco.numero, 'numeroLabel');
 
     if (c.lojista === c.consumidor_final) {
       this.completo = false;
-      document.getElementById('consumidor_finalLabel').style.color = 'red';
-      document.getElementById('lojistaLabel').style.color = 'red';
+      this.pintaVermelho('consumidor_finalLabel');
+      this.pintaVermelho('lojistaLabel');
     } else {
-      document.getElementById('consumidor_finalLabel').style.color = '#0f82c1';
-      document.getElementById('lojistaLabel').style.color = '#0f82c1';
+      this.pintaAzul('consumidor_finalLabel');
+      this.pintaAzul('lojistaLabel');
     }
 
    }
@@ -44,9 +48,9 @@ export class ClientesComponent implements OnInit {
    verify(c: string, s: string): void {
     if (this.nullorEmpty(c)) {
       this.completo = false;
-      this.pintaCampo(s);
+      this.pintaVermelho(s);
     } else {
-      document.getElementById(s).style.backgroundColor = 'white';
+      this.pintaAzul(s);
     }
    }
 
@@ -54,32 +58,31 @@ export class ClientesComponent implements OnInit {
     if (s === '' || s === null) {return true; }
    }
 
-   pintaCampo(s: string): void {
-    document.getElementById(s).style.backgroundColor = 'red';
+   pintaVermelho(s: string): void {
+    document.getElementById(s).style.color = 'red';
    }
+   pintaAzul(s: string): void {
+    document.getElementById(s).style.color = '#0f82c1';
+  }
 
    isNumber(n: string): boolean {
     return !isNaN(parseFloat(n)) && /^\d+$/.test(n);
+   }
+
+   campoInvalido(c: string, s: string): void {
+    if (!this.isNumber(c)) {
+      this.invalido = true;
+      this.pintaVermelho(s);
+    } else {
+      this.pintaAzul(s);
+    }
    }
 
    criarCliente(c: Cliente): void {
      this.completo = true;
      this.invalido = false;
      this.verificaCampos(c);
-     if (this.completo) {
-      if (!this.isNumber(c.cpf_cnpj)) {
-        this.invalido = true;
-        this.pintaCampo('CPF_ou_CNPJInput');
-       }
-      if (!this.isNumber(c.telefone)) {
-        this.invalido = true;
-        this.pintaCampo('telefoneInput');
-      }
-      if (!this.isNumber(c.endereco.numero)) {
-        this.invalido = true;
-        this.pintaCampo('numeroInput');
-      }
-      if (!this.invalido) {
+     if (this.completo && !this.invalido) {
         this.clienteService.criar(c)
         .then(ab => {
            if (ab) {
@@ -90,7 +93,6 @@ export class ClientesComponent implements OnInit {
            }
         })
         .catch(erro => alert(erro));
-      }
      }
    }
 
