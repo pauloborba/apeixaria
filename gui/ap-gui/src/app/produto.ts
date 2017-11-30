@@ -1,7 +1,7 @@
 export class Produto {
-  codigo: number;
+  codigo: string;
   nome: string;
-  valor: number;
+  valor: string;
   unid: string;
   categoria: string;
   
@@ -17,13 +17,6 @@ export class Produto {
     this.categoria = '';
 
   }
-
-  clone(): Produto {
-    const produto: Produto = new Produto();
-    produto.copyFrom(this);
-    return produto;
-  }
-
   copyFrom(from: Produto): void {
     this.codigo = from.codigo;
     this.nome = from.nome;
@@ -31,8 +24,5 @@ export class Produto {
     this.unid = from.unid;
     this.categoria = from.categoria;
   }
-
-}
-
 
 }
