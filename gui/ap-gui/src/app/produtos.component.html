@@ -25,10 +25,10 @@
         <td><button (click)="criarProduto(produto)" id="Cadastrar">Cadastrar</button></td>
     </tr>   
     <tr>
-        <td *ngIf="codrepetido">
+        <td *ngIf="codrepetido" id="codrepetido">
             Este código já está cadastrado
         </td>
-        <td *ngIf="campoembranco">
+        <td *ngIf="campoembranco" id="campoembranco">
             Campo em branco
         </td>
         <td></td>

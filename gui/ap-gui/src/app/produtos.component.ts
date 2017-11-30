@@ -21,8 +21,8 @@ export class ProdutosComponent implements OnInit {
    prodcadastrado: boolean = false;
 
    criarProduto(p: Produto): void {
-    this.codrepetido = false
-    this.campoembranco = false
+    this.codrepetido = false;
+    this.campoembranco = this.cadastroincompleto(p);
     if(!(this.campoembranco || this.codrepetido)) {
       this.produtoService.criar(p).then(prod =>{ 
          this.produtos.push(p);
@@ -31,7 +31,20 @@ export class ProdutosComponent implements OnInit {
        }
      }
 
-  
+    cadastroincompleto(p: Produto): boolean {
+      var campo = null;
+      var incompleto = false;
+      for (var key in p) {
+        if (p.hasOwnProperty(key)) {
+          var element = p[key];
+          if(element = null || element == undefined || element ==""){
+            incompleto = true;
+          }
+        }
+      }
+      return incompleto;    
+   } 
+
    ngOnInit(): void {
     console.log();
     this.produtoService.getProdutos()
