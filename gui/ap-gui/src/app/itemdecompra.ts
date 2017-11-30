@@ -1,3 +1,4 @@
+/*
 Import { Produto } from ‘./cliente’;
 
 export class ItemDeCompra {
@@ -52,3 +53,4 @@ export class ItemDeCompra {
 	}
 	
 }
+*/

@@ -4,8 +4,12 @@ export class CadastroDeClientes {
   clientes: Cliente[] = [];
 
   criar(cliente: Cliente): Cliente {
-    let result = null;
-  
+    var result = null;
+    if (this.cpf_cnpjNaoCadastrado(cliente.cpf_cnpj)) {
+      result = new Cliente();
+      result.copyFrom(cliente);
+      this.clientes.push(result);
+    }
     return result;
   }
 

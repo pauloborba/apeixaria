@@ -1,4 +1,4 @@
-
+/*
 import { Cliente } from './cliente';
 import { ItemDeCompra } from './itemdecompra';
 
@@ -63,3 +63,4 @@ export class Pedido {
     }
   }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 export class Produto {
   codigo: number;
   nome: string;
@@ -36,3 +37,4 @@ export class Produto {
 
 
 }
+*/

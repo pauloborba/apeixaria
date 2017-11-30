@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
@@ -30,3 +31,4 @@ export class ProdutosComponent implements OnInit {
    }
 
 }
+*/
