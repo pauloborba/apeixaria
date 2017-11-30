@@ -1,9 +1,9 @@
 <html>
         <table>
-        <tr *ngIf="clientes.length > 0">
-           <th>Nome</th>
-           <th>Telefone</th>
-           <th>Tipo</th>
+        <tr>
+           <th name = "nomelist">Nome</th>
+           <th name = "telefonelist">Telefone</th>
+           <th name = "opcaolist">Tipo</th>
         </tr>
         <tr *ngFor="let a of clientes" name="clientelist">
            <td name="nomelist">{{a.nome}}</td>
