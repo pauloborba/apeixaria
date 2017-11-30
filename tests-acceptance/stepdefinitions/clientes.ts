@@ -1,5 +1,5 @@
 import { defineSupportCode } from 'cucumber';
-import { browser, $, element, ElementArrayFinder, by } from 'protractor';
+import { browser, $, element, ElementArrayFinder, by, ExpectedConditions } from 'protractor';
 let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 
@@ -9,6 +9,7 @@ let sameCPF = ((elem, cpf) => elem.element(by.name('cpflist')).getText().then(te
 let sameNome = ((elem, nome) => elem.element(by.name('nomelist')).getText().then(text => text === nome));
 let sameTelefone = ((elem, telefone) => elem.element(by.name('telefonelist')).getText().then(text => text === telefone));
 let sameOpcao = ((elem, opcao) => elem.element(by.name('opcaolist')).getText().then(text => text === opcao));
+let pAND = ((p,q) => p.then(pb => q.then(qb => pb && qb)));
 
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^estou na página de Cadastro de Clientes$/, async () => {
@@ -50,6 +51,27 @@ defineSupportCode(function ({ Given, When, Then }) {
         var same = allclientes.filter(elem => sameNome(elem, nome) && sameTelefone(elem, telefone) && sameOpcao(elem, op));
         await same;
         await same.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    Then(/^não vejo “([^0-9]*)”, “([^\"]*)” e “([^\"]*)” em Listagem de Clientes$/, async (nome, telefone, opcao) => { 
+        await $("a[name='clientes']").click();
+        const op = <string> opcao;                
+        var allclientes : ElementArrayFinder = element.all(by.name('clientelist'));
+        await allclientes;
+        var same = allclientes.filter(elem => pAND(sameNome(elem, nome), pAND(sameTelefone(elem, telefone), sameOpcao(elem, op))));        
+        await same;
+        await same.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+    });
+
+    Then(/^um aviso de campo “([^0-9]*)” é exibido$/, async(avisoCampo) => {
+        const nomeAviso = 'campo' + avisoCampo;
+        await expect(element(by.name(nomeAviso)).isPresent()).to.eventually.equal(true);
+    });
+
+    Then(/^vejo o campo “([^0-9]*)” destacado$/, async(campo) => {
+        campo = <string> campo;                
+        const campoInput = campo.replace(/\s/g, '_') + 'Input';
+        await expect($("input[id = " + campoInput + "]").getCssValue('background-color')).to.eventually.equal('rgba(255, 0, 0, 1)');
     });
 
 
