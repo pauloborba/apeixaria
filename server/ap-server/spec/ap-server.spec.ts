@@ -23,7 +23,14 @@ describe("O servidor", () => {
          expect(e).toEqual(null)
     )
   });
-
+  it("não cadastra produto com campo em branco", () => {
+    return request.post(base_url + "produtos", {"json":{codigo: "001", nome:"camarao cinza", valor:"", unid:"kg", categoria:"camaroes"}}).then(body => {
+      expect(body).toEqual({success: "O produto não pode ser cadastrado"});
+          return request.get(base_url + "produtos").then(body => {
+              expect(body).not.toContain('{"codigo": "001", "nome":"camarao cinza", "valor":"", "unid":"kg", "categoria":"camaroes"}');      
+          });
+      });
+  });
   })
 
 })
