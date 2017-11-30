@@ -11,3 +11,14 @@ When seleciono "kg" para o campo "unidade de medida"
 When seleciono "camarões" para o campo "categoria"
 When finalizo o cadastro
 Then o produto com código "001" agora aparece na categoria "camarões" na listagem de produtos
+
+Scenario: Cadastro de produto mal sucedido por campo não preenchido
+Given estou na página de Produtos
+When preencho o campo "codigo" com "102"
+When preencho o campo "nome" com "Tilápia"
+When seleciono "kg" para o campo "unidade de medida"
+When seleciono "peixes" para o campo "categoria"
+When finalizo o cadastro
+Then o produto com código "102" não aparece na categoria "peixes" na listagem de produtos
+Then uma mensagem de erro por campo não preenchido aparecerá na tela
+

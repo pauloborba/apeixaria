@@ -36,4 +36,10 @@ cucumber_1.defineSupportCode(function ({ Given, When, Then }) {
     Then(/^o produto com código "([^\"]*)" agora aparece na categoria "([^\"]*)" na listagem de produtos$/, (cod, cat) => __awaiter(this, void 0, void 0, function* () {
         expect(yield protractor_1.element(protractor_1.by.css(`table#${cat}-table tbody tr#id-${cod}`)).isPresent()).to.be.true;
     }));
+    Then(/^o produto com código "([^\"]*)" não aparece na categoria "([^\"]*)" na listagem de produtos$/, (cod, cat) => __awaiter(this, void 0, void 0, function* () {
+        expect(yield protractor_1.element(protractor_1.by.css(`table#${cat}-table tbody tr#id-${cod}`)).isPresent()).to.be.false;
+    }));
+    Then(/^uma mensagem de erro por campo não preenchido aparecerá na tela$/, () => __awaiter(this, void 0, void 0, function* () {
+        expect(yield protractor_1.element(protractor_1.by.binding('campoembranco')).isPresent()).to.be.true;
+    }));
 });
