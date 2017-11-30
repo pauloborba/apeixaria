@@ -28,17 +28,21 @@ export class ClientesComponent implements OnInit {
     this.verify(c.endereco.rua, 'ruaInput');
     this.verify(c.endereco.numero, 'numeroInput');
     this.verify(c.endereco.cidade, 'cidadeInput');
-    this.verify(c.cpf_cnpj, 'CPU_ou_CNPJInput');
+    this.verify(c.cpf_cnpj, 'CPF_ou_CNPJInput');
 
     if (c.lojista === c.consumidor_final) {
-      this.pintaCampo('lojista');
-      this.pintaCampo('consumidor_final');
+      document.getElementById('consumidor_finalLabel').style.color = 'red';
+      document.getElementById('lojistaLabel').style.color = 'red';
     }
 
    }
 
    verify(c: string, s: string): void {
-    if (this.nullorEmpty(c)) {this.pintaCampo(s); }
+    if (this.nullorEmpty(c)) {
+      this.pintaCampo(s);
+    } else {
+      document.getElementById(s).style.backgroundColor = 'white';
+    }
    }
 
    nullorEmpty(s: string): boolean {
@@ -50,22 +54,23 @@ export class ClientesComponent implements OnInit {
     document.getElementById(s).style.backgroundColor = 'red';
    }
 
+
    criarCliente(c: Cliente): void {
      this.completo = true;
      this.verificaCampos(c);
      if (this.completo) {
-      this.clienteService.criar(c)
-      .then(ab => {
-         if (ab) {
-            this.clientes.push(ab);
-            this.cliente = new Cliente();
-         } else {
-            this.cpf_cnpjduplicado = true;
-         }
-      })
-      .catch(erro => alert(erro));
+        this.clienteService.criar(c)
+        .then(ab => {
+           if (ab) {
+              this.clientes.push(ab);
+              this.cliente = new Cliente();
+           } else {
+              this.cpf_cnpjduplicado = true;
+           }
+        })
+        .catch(erro => alert(erro));
+      }
      }
-   }
 
    ngOnInit(): void {
      this.clienteService.getClientes()
