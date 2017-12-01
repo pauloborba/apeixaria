@@ -37,6 +37,27 @@ describe("O cadastro de alunos", () => {
     expect(cadastro.getProdutos().length).toBe(0);
   })
 
+  it("não aceita produtos com código duplicado", () => {
+    var prod: Produto = new Produto();
+    prod.codigo = "001"
+    prod.nome = "camarao cinza";
+    prod.valor = "33";
+    prod.unid = "kg";
+    prod.categoria = "camarões"
+    cadastro.criar(prod);
+
+    prod = new Produto();
+    prod.codigo = "001"
+    prod.nome = "file camarao";
+    prod.valor = "66";
+    prod.unid = "kg";
+    prod.categoria = "camarões"
+    cadastro.criar(prod);
+
+    expect(cadastro.getProdutos().length).toBe(1);
+  })
+
+
 
 
 })
