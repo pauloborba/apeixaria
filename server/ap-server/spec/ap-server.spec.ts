@@ -32,5 +32,18 @@ describe("O servidor", () => {
       });
   });
   })
+  
+  it("não cadastra produtos com codigo duplicado", () => {
+    return request.post(base_url + "produtos", {"json":{codigo: "001", nome:"camarao cinza", valor:"33", unid:"kg", categoria:"camaroes"}}).then(body => {
+         expect(body).toEqual({success: "O produto foi cadastrado com sucesso"});
+         return request.post(base_url + "produtos", {"json":{codigo: "001", nome:"file de camarao", valor:"66", unid:"kg", categoria:"camaroes"}}).then(body => {
+             expect(body).toEqual({failure: "O produto não pode ser cadastrado"});
+             return request.get(base_url + "produtos").then(body => {
+                 expect(body).toContain('{"codigo": "001", "nome":"camarao cinza", "valor":"33", "unid":"kg", "categoria":"camaroes"}');
+                 expect(body).not.toContain('{"codigo": "001", "nome":"file de camarao", "valor":"66", "unid":"kg", "categoria":"camaroes"}');
+             });
+         });
+     });
+  })
 
 })
