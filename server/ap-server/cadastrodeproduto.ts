@@ -5,18 +5,9 @@ export class CadastroDeProdutos {
 
   criar(produto: Produto): Produto {
     var result = null;
-    return result;
-  }
-
-  codNaoCadastrado(cod: number): boolean {
-     return false;
-  }
-  remover(produto: Produto): void{
-      
-  }
-
-  atualizar(produto: Produto): Produto {
-    var result = null;
+    result = new Produto();
+    result.copyFrom(produto);
+    this.produtos.push(result);
     return result;
   }
 
