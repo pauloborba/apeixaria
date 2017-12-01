@@ -4,8 +4,6 @@ let chai = require('chai').use(require('chai-as-promised'));
 let expect = chai.expect;
 
 let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
-let mesmocod = ((elem, cod) => elem.element(by.name('codlist')).getText().then(text => text === cod));
-
 
 defineSupportCode(function ({ Given, When, Then }) {
     Given(/^estou na página de Produtos$/, async () => {
@@ -13,6 +11,15 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(browser.getTitle()).to.eventually.equal('ApGui');
         await $("a[name='produtos']").click();
     })
+
+    Given(/^o produto com código "([^\"]*)", nome "([^\"]*)", valor "([^\"]*)", unidade de medida "([^\"]*)" e categoria "([^\"]*)" está cadastrado no sistema$/, async (cod, nome, valor, unid, cat) => {  
+        await $("input[name=codigobox]").sendKeys(<string> cod);
+        await $("input[name=nomebox]").sendKeys(<string> nome);
+        await $("input[name=valorbox]").sendKeys(<string> valor);
+        await $(`select#unidade_de_medidabox option[value="${<string> unid}"]`).click()
+        await $(`select#categoriabox option[value="${<string> cat}"]`).click()
+        await $("button#Cadastrar").click();
+     })
 
     When(/^preencho o campo "([^\"]*)" com "([^\"]*)"$/, async (campo, valor) => {
         var c = <string> campo;
@@ -38,8 +45,17 @@ defineSupportCode(function ({ Given, When, Then }) {
         expect(await element(by.css(`table#${cat}-table tbody tr#id-${cod}`)).isPresent()).to.be.false;
     });
 
+    Then(/^o produto com código "([^\"]*)" e nome "([^\"]*)" não aparece na categoria "([^\"]*)" na listagem de produtos$/, async (cod, nome, cat) => {
+        var isPresent = await element(by.css(`table#${cat}-table tbody tr#id-${cod}`)).isPresent();
+        expect((await element(by.css(`table#${cat}-table tbody tr#id-${cod} td[name='nomelist']`)).getText()) != nome).to.be.true;
+    });
+
     Then(/^uma mensagem de erro por campo não preenchido aparecerá na tela$/, async () => {
         expect(await element(by.id('campoembranco')).isPresent()).to.be.true;
+    });
+
+    Then(/^uma mensagem de erro por código repetido aparecerá na tela$/, async () => {
+        expect(await element(by.id('codrepetido')).isPresent()).to.be.true;
     });
 
 })
