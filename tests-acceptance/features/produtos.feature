@@ -25,11 +25,11 @@ Then uma mensagem de erro por campo não preenchido aparecerá na tela
 Scenario: Cadastro de produto mal sucedido por código repetido
 Given estou na página de Produtos
 Given o produto com código "003", nome "Pitu", valor "40", unidade de medida "kg" e categoria "camarões" está cadastrado no sistema
-When preencho o campo "codigo" com "001"
+When preencho o campo "codigo" com "003"
 When preencho o campo "nome" com "Filé de camarão"
 When preencho o campo "valor" com "66"
 When seleciono "kg" para o campo "unidade de medida"
 When seleciono "camarões" para o campo "categoria"
 When finalizo o cadastro
-Then o produto com código "001" e nome "Filé de camarão" não aparece na categoria "camarões" na listagem de produtos
+Then o produto com código "003" e nome "Filé de camarão" não aparece na categoria "camarões" na listagem de produtos
 Then uma mensagem de erro por código repetido aparecerá na tela

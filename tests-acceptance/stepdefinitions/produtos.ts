@@ -46,8 +46,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^o produto com código "([^\"]*)" e nome "([^\"]*)" não aparece na categoria "([^\"]*)" na listagem de produtos$/, async (cod, nome, cat) => {
-        var isPresent = await element(by.css(`table#${cat}-table tbody tr#id-${cod}`)).isPresent();
-        expect((await element(by.css(`table#${cat}-table tbody tr#id-${cod} td[name='nomelist']`)).getText()) != nome).to.be.true;
+        return setTimeout(async () => expect((await element(by.css(`table#${cat}-table tbody tr#id-${cod} td[name='nomelist']`)).getText()) != nome).to.be.true, 0)
     });
 
     Then(/^uma mensagem de erro por campo não preenchido aparecerá na tela$/, async () => {
@@ -55,7 +54,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Then(/^uma mensagem de erro por código repetido aparecerá na tela$/, async () => {
-        expect(await element(by.id('codrepetido')).isPresent()).to.be.true;
+        return setTimeout(async () => expect( await element(by.css(`codrepetido`)).isPresent()).to.be.true, 0)
     });
 
 })
