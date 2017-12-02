@@ -87,7 +87,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         var all : ElementArrayFinder = element.all(by.name('pendentes'));
         await all;
         var samecode = all.filter((elem => sameCode(elem,code)));
-        await samecode.first().$("td[class='outdated']").then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await samecode.first().$("td[class='atrasado']").then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
     Then(/^eu nao vejo o pedido "(\d*)" na lista de pedidos pendentes$/, async (code) => {

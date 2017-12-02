@@ -8,6 +8,7 @@
 
    <table id="tabelaPendentes">
    <tr *ngIf="filterPendentes().length > 0">
+      <th>Situação</th>
       <th>Codigo</th>
       <th>Cliente</th>
       <th>Data do Pedido</th>
@@ -16,10 +17,12 @@
       <th>Pago</th>
    </tr>
    <tr *ngFor="let p of filterPendentes()" name="pendentes">
+      <td *ngIf="verificarAtraso(p.dataEntrega)" class="atrasado">ATRASADO</td>
+      <td *ngIf="!verificarAtraso(p.dataEntrega)">PENDENTE</td>
       <td name="code">{{p.codigo}}</td>
       <td name="client">{{p.cliente.nome}}</td>
       <td name="requestDate">{{p.dataPedido}}</td>
-      <td name="deliverDate">{{p.dataEntrega}}</td>
+      <td name="deliverDate">{{p.dataEntrega}} </td>
       <td name="delivered" class={{p.entregue}} ><input type="checkbox"[(ngModel)]="p.entregue" (change)="atualizarPedido(p)"></td>
       <td name="paid" class={{p.pago}}><input type="checkbox"[(ngModel)]="p.pago"  (change)="atualizarPedido(p)"></td>
    </tr>
