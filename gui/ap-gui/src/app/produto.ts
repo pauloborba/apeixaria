@@ -1,7 +1,7 @@
 export class Produto {
   codigo: string;
   nome: string;
-  valor: string;
+  valor: number;
   unid: string;
   categoria: string;
   
@@ -10,7 +10,7 @@ export class Produto {
   }
 
   clean(): void {
-    this.codigo = null;
+    this.codigo = '';
     this.nome = '';
     this.valor = null;
     this.unid = '';
