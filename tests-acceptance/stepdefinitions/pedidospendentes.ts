@@ -13,6 +13,7 @@ let sameText= ((elem, code) => elem.element(by.name('paidDelivered')).getText().
 let notpaid = ((elem) => elem.element(by.name('paid')).getAttribute('class').then(value => value === 'false'));
 let notdelivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'false'));
 let delivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'true'));
+let outdated = ((elem) => elem.element(by.name('situacao')).getAttribute('class').then(value => value === 'outdated'));
 let sameDate = ((elem, date) => elem.element(by.name('deliverDate')).getText().then(text => text === date));
 
 
@@ -86,8 +87,8 @@ defineSupportCode(function ({ Given, When, Then }) {
     Then(/^eu vejo o pedido "(\d*)" na lista de pedidos pendentes com atraso$/, async (code) => {
         var all : ElementArrayFinder = element.all(by.name('pendentes'));
         await all;
-        var samecode = all.filter((elem => sameCode(elem,code)));
-        await samecode.first().$("td[class='atrasado']").then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        var samecode = all.filter((elem => sameCode(elem,code) && outdated(elem)));
+        await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
     Then(/^eu nao vejo o pedido "(\d*)" na lista de pedidos pendentes$/, async (code) => {
