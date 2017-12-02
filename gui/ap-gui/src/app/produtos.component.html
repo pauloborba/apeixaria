@@ -39,50 +39,34 @@
 
     <h1>Listagem de produtos</h1>
     <h3>Camarões</h3>
-    <ng-container *ngFor="let p of produtos">
+    <ng-container *ngFor="let prod of produtos">
         <table id="camarões-table">
-            <tr *ngIf="p.categoria == 'camarões'" id="id-{{p.codigo}}">
-                <td name="codigolist">{{p.codigo}}</td>
-                <td name="nomelist">{{p.nome}}</td> 
-                <td name="valorlist"><input [(ngModel)]="p.valor" (change)="alterarValor(p)"></td>
-                <td name="unidlist">{{p.unid}}</td>
-                <td><button (click)="deletarProduto(p)">Deletar</button></td>
+            <tr *ngIf="prod.categoria == 'camarões'" id="id-camarões-{{prod.codigo}}">
+                <lista-produtos [prod]="prod"></lista-produtos>
             </tr>
         </table>
     </ng-container>
     <h3>Peixes</h3>
-    <ng-container *ngFor="let p of produtos">
+    <ng-container *ngFor="let prod of produtos">
         <table id="peixes-table">
-            <tr *ngIf="p.categoria == 'peixes'" id="id-{{p.codigo}}">
-                <td name="codigolist">{{p.codigo}}</td>
-                <td name="nomelist">{{p.nome}}</td> 
-                <td name="valorlist"><input [(ngModel)]="p.valor" (change)="alterarValor(p)"></td>
-                <td name="unidlist">{{p.unid}}</td>
-                <td><button (click)="deletarProduto(p)">Deletar</button></td>
+            <tr *ngIf="prod.categoria == 'peixes'" id="id-{{prod.codigo}}">
+                <lista-produtos [prod]="prod"></lista-produtos>
             </tr>
         </table>
     </ng-container>
     <h3>Frutos do Mar</h3>
-    <ng-container *ngFor="let p of produtos">
-        <table id="frutos do mar-table">
-            <tr *ngIf="p.categoria == 'frutos do mar'" id="id-{{p.codigo}}">
-                <td name="codigolist">{{p.codigo}}</td>
-                <td name="nomelist">{{p.nome}}</td> 
-                <td name="valorlist"><input [(ngModel)]="p.valor" (change)="alterarValor(p)"></td>
-                <td name="unidlist">{{p.unid}}</td>
-                <td><button (click)="deletarProduto(p)">Deletar</button></td>
+    <ng-container *ngFor="let prod of produtos">
+        <table id="frutos-do-mar-table">
+            <tr *ngIf="prod.categoria == 'frutos do mar'" id="id-{{prod.codigo}}">
+                <lista-produtos [prod]="prod"></lista-produtos>
             </tr>
         </table>
     </ng-container>
     <h3>Diversos</h3>
-    <ng-container *ngFor="let p of produtos">
+    <ng-container *ngFor="let prod of produtos">
         <table id="diversos-table">
-            <tr *ngIf="p.categoria == 'diversos'" id="id-{{p.codigo}}">
-                <td name="codigolist">{{p.codigo}}</td>
-                <td name="nomelist">{{p.nome}}</td> 
-                <td name="valorlist"><input [(ngModel)]="p.valor" (change)="alterarValor(p)"></td>
-                <td name="unidlist">{{p.unid}}</td>
-                <td><button (click)="deletarProduto(p)">Deletar</button></td>
+            <tr *ngIf="prod.categoria == 'diversos'" id="id-{{prod.codigo}}">
+                <lista-produtos [prod]="prod"></lista-produtos>
             </tr>
         </table>
     </ng-container>

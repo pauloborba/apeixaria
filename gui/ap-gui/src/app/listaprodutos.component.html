@@ -1,0 +1,5 @@
+<td name="codigolist">{{prod.codigo}}</td>
+<td name="nomelist">{{prod.nome}}</td> 
+<td name="valorlist"><input [(ngModel)]="prod.valor" (change)="alterarValor(prod)"></td>
+<td name="unidlist">{{prod.unid}}</td>
+<td><button (click)="deletarProduto(prod)">Deletar</button></td>
