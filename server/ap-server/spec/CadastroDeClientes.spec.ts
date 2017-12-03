@@ -42,5 +42,29 @@ describe("O cadastro de clientes", () => {
     
   })
 
+  it("atualiza clientes corretamente", () => {
+    var cliente: Cliente = new Cliente();
+    cliente.nome = "Julia";
+    cliente.cpf_cnpj = "10110110199";
+    cliente.data_nascimento = "10/10/00";
+    cliente.telefone = "81999567865";
+    cliente.consumidor_final = true;
+    cliente.lojista = false;
+    var enderecoC: Endereco = new Endereco();
+    enderecoC.bairro = "Boa Viagem";
+    enderecoC.numero = "28";
+    enderecoC.ponto_referencia = "Proximo ao colégio Motivo";
+    enderecoC.rua = "Rua Tenente Joao";
+    cliente.endereco = enderecoC;
+    cadastro.criar(cliente);
+
+    cliente.telefone = "88978967768";
+    cadastro.atualizar(cliente);
+
+    expect(cliente.telefone).toBe("88978967768");
+    
+  })
+  
+
 
 })
