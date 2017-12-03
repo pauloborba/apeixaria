@@ -66,3 +66,9 @@ Then eu vejo o pedido "3" na lista de pedidos pendentes
 And eu nao vejo o pedido "3" no historico
 And o pedido "3" nao esta mais marcado como pago
 And o pedido "3" nao esta mais marcado como entregue
+
+Scenario: Visualização pedido
+Given eu tenho o pedido "4" cadastrado ao cliente "Joyce" com "2" unidades de "Camarão" que custa "20" reais
+And eu vejo o pedido "4" cadastrado ao cliente "Joyce" no historico
+When eu clicar para visualizar o pedido "4"
+Then eu não vejo a lista de pedidos pendentes

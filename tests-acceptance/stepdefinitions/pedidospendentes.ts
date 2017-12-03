@@ -28,10 +28,17 @@ defineSupportCode(function ({ Given, When, Then }) {
         await $("a[name='pedidos']").click();
     })
 
+    Given(/^eu tenho o pedido "(\d*)" cadastrado ao cliente "([^\"]*)" com "(\d*)" unidades de "([^\"]*)" que custa "(\d*)" reais$/, async (code, client, quant, produto,preco) => {
+        var valor: number= (Number(preco)*Number(quant));
+        var options:any = {method: 'POST', uri: ("http://localhost:3000/pedidos"), body:{"cliente": {"nome": client}, "entregue" : false, "pago": false, "lista":[{"produto":{"codigo":"1", "nome":produto, "valor":preco},"quantidade":quant,"valor":valor}]}, json: true};
+        request(options);
+        request.post("localhost:3000/pedidos");
+    });
+
     Given(/^eu tenho o pedido "(\d*)" cadastrado ao cliente "([^\"]*)" com data de pedido "([^\"]*)" e data de entrega "([^\"]*)"$/, async (code, client, pedido, entrega) => {
         var options:any = {method: 'POST', uri: ("http://localhost:3000/pedidos"), body:{"cliente": {"nome": client}, "entregue" : false, "pago": false, "dataPedido": pedido, "dataEntrega":entrega}, json: true};
         request(options);
-        request.post("localhost:3000/pedidos", );
+        request.post("localhost:3000/pedidos");
     });
 
     Given(/^eu vejo o pedido "(\d*)" cadastrado ao cliente "([^\"]*)" na lista de pendentes$/, async (code, client) => {
@@ -91,6 +98,14 @@ defineSupportCode(function ({ Given, When, Then }) {
         var samecode = all.filter((elem => sameCode(elem,code)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
         await samecode.first().all(by.name('cancel')).first().$("button").click();
+    });
+
+    When(/^eu clicar para visualizar o pedido "(\d*)"$/, async (code) => {
+        var all : ElementArrayFinder = element.all(by.name('pendentes'));
+        await all;
+        var samecode = all.filter((elem => sameCode(elem,code)));
+        await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await samecode.first().all(by.name('visualize')).first().$("button").click();
     });
 
     When(/^eu restaurar o pedido "(\d*)"$/, async (code) => {
@@ -173,5 +188,10 @@ defineSupportCode(function ({ Given, When, Then }) {
         await all;
         var samecode = all.filter((elem => sameCode(elem,code) && notdelivered(elem)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    Then(/^eu não vejo a lista de pedidos pendentes$/, async () => {
+        var all : ElementArrayFinder = element.all(by.name('pendentes'));
+        await all.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
     });
 })
