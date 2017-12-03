@@ -17,8 +17,8 @@
       <th>Pago</th>
    </tr>
    <tr *ngFor="let p of filterPendentes()" name="pendentes">
-      <td *ngIf="verificarAtraso(p.dataEntrega)" name="situacao" class="outdated">ATRASADO</td>
-      <td *ngIf="!verificarAtraso(p.dataEntrega)">PENDENTE</td>
+      <td *ngIf="verificarAtraso(p.dataEntrega) && !p.entregue" name="situacao" class="outdated">ATRASADO</td>
+      <td *ngIf="!verificarAtraso(p.dataEntrega) || p.entregue" name="situacao" class="pendent">PENDENTE</td>
       <td name="code">{{p.codigo}}</td>
       <td name="client">{{p.cliente.nome}}</td>
       <td name="requestDate">{{p.dataPedido}}</td>

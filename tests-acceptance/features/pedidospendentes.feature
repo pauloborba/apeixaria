@@ -42,7 +42,7 @@ And o pedido "3" nao esta marcado como pago
 And o pedido "3" nao esta marcado como entregue
 Then eu vejo o pedido "3" na lista de pedidos pendentes com atraso
 
-Scenario: Entregando atrasado
+Scenario: Entregando pedido atrasado
 Given eu estou na pagina de pedidos pendentes
 And eu vejo o pedido "3" cadastrado ao cliente "Ricardo" na lista de pendentes
 And o pedido "3" nao esta marcado como pago
