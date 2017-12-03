@@ -29,6 +29,8 @@ defineSupportCode(function ({ Given, When, Then }) {
     When(/^preencho o campo “([^0-9]*)” com “([^\"]*)”$/, async (campo, conteudo) => {
         campo = <string> campo;        
         const campoInput = campo.replace(/\s/g, '_') + 'Input';
+        await $("input[id = " + campoInput + "]").clear();
+        //await expect($("input[id = " + campoInput + "]").getText()).to.eventually.equal('');        
         await $("input[id = " + campoInput + "]").sendKeys(<string> conteudo);
     });
 
@@ -39,7 +41,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(element(by.id(opcaoInput)).isSelected()).to.eventually.equal(true);
     });
 
-    When(/^finalizo “([^\"]*)”$/, async (save) => {
+    When(/^finalizo o cadastro$/, async () => {
         await $("button[id = 'saveButton']").click();
     });
 
@@ -72,6 +74,46 @@ defineSupportCode(function ({ Given, When, Then }) {
         campo = <string> campo;                
         const campoLabel = campo.replace(/\s/g, '_') + 'Label';
         await expect($("label[id = " + campoLabel + "]").getCssValue('color')).to.eventually.equal('rgba(255, 0, 0, 1)');
+    });
+
+    Given(/^o campo “([^0-9]*)” está preenchido com “([^\"]*)”$/, async (campo, conteudo) => { //verifico se o input tb esta presente
+        campo = <string> campo;        
+        const campoLabel = campo.replace(/\s/g, '_') + 'Label';
+        const campoInput = campo.replace(/\s/g, '_') + 'Input';
+        await expect(($("label[id = " + campoLabel + "]")).isPresent()).to.eventually.equal(true);
+        await expect(($("input[id = " + campoInput + "]")).isPresent()).to.eventually.equal(true);
+        await $("input[id = " + campoInput + "]").sendKeys(<string> conteudo);        
+        await expect($("input[id = " + campoInput + "]").getAttribute('value')).to.eventually.equal(<string> conteudo);
+    });
+
+    Given(/^a opção “([^0-9]*)” está selecionada$/, async (opcao) => { 
+        opcao = <string> opcao;        
+        const opcaoInput = opcao.replace(/\s/g, '_') + 'Input';
+        await element(by.id(opcaoInput)).click();
+        await expect(element(by.id(opcaoInput)).isSelected()).to.eventually.equal(true);
+    });
+
+    When(/^finalizo a alteração$/, async () => {
+        await $("button[id = 'attButton']").click();
+    });
+
+    Then(/^o cliente é atualizado no sistema com “([^0-9]*)” igual a “([^\"]*)”$/, async(campo, conteudo) => {
+        await $("a[name='clientes']").click();        
+        const c = <string> campo;  
+        conteudo = <string> conteudo;              
+        var allclientes : ElementArrayFinder = element.all(by.name('clientelist'));
+        await allclientes;
+        let same = ((elem, conteudo) => elem.element(by.name(c.replace(/\s/g, '') + 'list')).getText().then(text => text === conteudo)); 
+        await same;       
+        var sameCliente = allclientes.filter(elem => same(elem, conteudo));
+        await sameCliente;
+        await sameCliente.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    Then(/^um aviso de cliente “([^0-9]*)” é exibido$/, async(avisoCliente) => {
+        avisoCliente = <string> avisoCliente;                        
+        const nomeAviso = 'cliente' + avisoCliente.replace(/\s/g, '_');
+        await expect(element(by.name(nomeAviso)).isPresent()).to.eventually.equal(true);
     });
 
 
