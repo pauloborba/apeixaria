@@ -19,7 +19,7 @@ export class ProdutosComponent implements OnInit {
    prodcadastrado: boolean = false;
 
    criarProduto(p: Produto): void {
-    this.codrepetido = false;
+    this.codrepetido = this.jaexisteProduto(p);
     this.campoembranco = this.cadastroincompleto(p);
     if(!(this.campoembranco || this.codrepetido)) {
       this.produtoService.criar(p).then(prod =>{ 
@@ -43,6 +43,16 @@ export class ProdutosComponent implements OnInit {
       }
       return incompleto;    
    } 
+
+
+   jaexisteProduto(p: Produto): boolean{
+    for(var i = 0; i < this.produtos.length; i++){
+      if(p.codigo == this.produtos[i].codigo){
+         return true;
+      }
+    }
+    return false;
+ } 
 
    ngOnInit(): void {
     console.log();
