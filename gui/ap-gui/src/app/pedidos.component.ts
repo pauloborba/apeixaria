@@ -23,7 +23,7 @@ export class PedidosComponent implements OnInit {
    }
 
    filterPendentes(){
-    return this.pedidos.filter(x => !x.entregue || !x.pago);
+    return this.pedidos.filter(x => (!x.entregue || !x.pago) && !x.cancelado);
    }
 
    filterHistorico(){
@@ -39,6 +39,11 @@ export class PedidosComponent implements OnInit {
       else{
         return false;
       }
+   }
+
+   cancelar(pedido: Pedido){
+    pedido.cancelado=true;
+    this.atualizarPedido(pedido);
    }
 
    ngOnInit(): void {

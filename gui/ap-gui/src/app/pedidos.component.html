@@ -25,6 +25,7 @@
       <td name="deliverDate">{{p.dataEntrega}} </td>
       <td name="delivered" class={{p.entregue}} ><input type="checkbox"[(ngModel)]="p.entregue" (change)="atualizarPedido(p)"></td>
       <td name="paid" class={{p.pago}}><input type="checkbox"[(ngModel)]="p.pago"  (change)="atualizarPedido(p)"></td>
+      <td name="cancel" id="cancel"><button class="canceling" (click)="cancelar(p)">Cancelar</button></td>
    </tr>
    </table>
 
@@ -48,8 +49,8 @@
       <td name="deliverDate">{{p.dataPedido}}</td>
       <td name="paidDelivered" *ngIf="p.entregue&&p.pago">Sim</td>
       <td name="paidDelivered" *ngIf="!p.entregue||!p.pago">Não</td>
-      <td *ngIf="p.cancelado">Sim</td>
-      <td *ngIf="!p.cancelado">Não</td>
+      <td name="cancelled" *ngIf="p.cancelado">Sim</td>
+      <td name="cancelled" *ngIf="!p.cancelado">Não</td>
    </tr>
    </table>
 
