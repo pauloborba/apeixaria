@@ -115,6 +115,25 @@ export class ClientesComponent implements OnInit {
     }
    }
 
+   cancelarAlteracao(c: Cliente): void {
+    this.cancelAlt = true;
+    this.completo = true;
+    this.invalido = false;
+    this.atualizado = false;
+    c.nome = '';
+    c.cpf_cnpj = '';
+    c.data_nascimento = '';
+    c.email = '';
+    c.telefone = '';
+    c.endereco.rua = '';
+    c.endereco.numero = '';
+    c.endereco.ponto_referencia = '';
+    c.endereco.bairro = '';
+    c.endereco.cidade = '';
+    c.consumidor_final = false;
+    c.lojista = false;
+  }
+
    ngOnInit(): void {
      this.clienteService.getClientes()
          .then(cs => this.clientes = cs)
