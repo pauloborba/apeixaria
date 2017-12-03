@@ -14,6 +14,7 @@ let notpaid = ((elem) => elem.element(by.name('paid')).getAttribute('class').the
 let notdelivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'false'));
 let delivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'true'));
 let outdated = ((elem) => elem.element(by.name('situacao')).getAttribute('class').then(value => value === 'outdated'));
+let pendent = ((elem) => elem.element(by.name('situacao')).getAttribute('class').then(value => value === 'pendent'));
 let sameDate = ((elem, date) => elem.element(by.name('deliverDate')).getText().then(text => text === date));
 
 
@@ -88,6 +89,13 @@ defineSupportCode(function ({ Given, When, Then }) {
         var all : ElementArrayFinder = element.all(by.name('pendentes'));
         await all;
         var samecode = all.filter((elem => sameCode(elem,code) && outdated(elem)));
+        await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    Then(/^eu vejo o pedido "(\d*)" na lista de pedidos pendentes sem atraso$/, async (code) => {
+        var all : ElementArrayFinder = element.all(by.name('pendentes'));
+        await all;
+        var samecode = all.filter((elem => sameCode(elem,code) && pendent(elem)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
