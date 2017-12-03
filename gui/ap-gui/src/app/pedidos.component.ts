@@ -46,6 +46,13 @@ export class PedidosComponent implements OnInit {
     this.atualizarPedido(pedido);
    }
 
+   restaurar(pedido: Pedido){
+    pedido.cancelado=false;
+    pedido.entregue=false;
+    pedido.pago=false;
+    this.atualizarPedido(pedido);
+   }
+
    ngOnInit(): void {
       this.pedidoService.getPedidos()
          .then(pedidos => this.pedidos = pedidos)

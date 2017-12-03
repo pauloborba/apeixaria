@@ -51,6 +51,7 @@
       <td name="paidDelivered" *ngIf="!p.entregue||!p.pago">Não</td>
       <td name="cancelled" *ngIf="p.cancelado">Sim</td>
       <td name="cancelled" *ngIf="!p.cancelado">Não</td>
+      <td name="comeback" id="comeback"><button class="restauring" (click)="restaurar(p)">Restaurar</button></td>
    </tr>
    </table>
 
