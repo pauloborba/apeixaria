@@ -16,12 +16,15 @@ export class CadastroDeClientes {
   cpf_cnpjNaoCadastrado(cpf_cnpj: string): boolean {
      return !this.clientes.find(a => a.cpf_cnpj == cpf_cnpj);
   }
-
+  
   atualizar(cliente: Cliente): Cliente {
-    
+    var result: Cliente = this.clientes.find(a => a.cpf_cnpj == cliente.cpf_cnpj);
+    if (result) result.copyFrom(cliente);
+    return result;
   }
 
   getClientes(): Cliente[] {
     return this.clientes;
   }
 }
+

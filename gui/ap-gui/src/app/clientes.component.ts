@@ -79,8 +79,10 @@ export class ClientesComponent implements OnInit {
    }
 
    criarCliente(c: Cliente): void {
+     this.cancelAlt = false;
      this.completo = true;
      this.invalido = false;
+     this.atualizado = false;
      this.verificaCampos(c);
      if (this.completo && !this.invalido) {
         this.clienteService.criar(c)
@@ -94,6 +96,23 @@ export class ClientesComponent implements OnInit {
         })
         .catch(erro => alert(erro));
      }
+   }
+
+   atualizarCliente(c: Cliente) {
+    this.cancelAlt = false;
+    this.completo = true;
+    this.invalido = false;
+    this.atualizado = false;
+    this.verificaCampos(c);
+    if (this.completo && !this.invalido) {
+     this.clienteService.atualizar(c)
+     .then(ab => {
+       if (ab) {
+         this.atualizado = true;
+       }
+     })
+     .catch(erro => alert(erro));
+    }
    }
 
    ngOnInit(): void {

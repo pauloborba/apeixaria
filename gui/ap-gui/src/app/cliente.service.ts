@@ -21,6 +21,14 @@ export class ClienteService {
     .catch(this.tratarErro);
   }
 
+  atualizar(cliente: Cliente): Promise<Cliente> {
+    return this.http.put(this.taURL + '/cliente', JSON.stringify(cliente), {headers: this.headers})
+    .toPromise()
+    .then(res => {
+       if (res.json().success) {return cliente; } else {return null; }
+    })
+    .catch(this.tratarErro);
+  }
 
   getClientes(): Promise<Cliente[]> {
     return this.http.get(this.taURL + '/clientes')

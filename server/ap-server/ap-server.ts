@@ -32,7 +32,15 @@ app.post('/cliente', function (req: express.Request, res: express.Response) {
   }
 })
 
-
+app.put('/cliente', function (req: express.Request, res: express.Response) {
+  var cliente: Cliente = <Cliente> req.body;
+  cliente = cadastro.atualizar(cliente);
+  if (cliente) {
+    res.send({"success": "O cliente foi atualizado com sucesso"});
+  } else {
+    res.send({"failure": "O cliente não pode ser atualizado"});
+  }
+})
 
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')

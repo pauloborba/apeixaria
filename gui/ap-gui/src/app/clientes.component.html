@@ -52,7 +52,7 @@
 
     <tr>
         <td><button (click)="criarCliente(cliente)" id = "saveButton">Adicionar</button></td>
-        <td><button (click)="cancelarAlteracao(cliente)" id = "cancelButton">Cancelar</button></td>
+        <td><button (click)="atualizarCliente(cliente)" id = "attButton">Alterar</button></td>        
     </tr>        
    
     </table>
@@ -62,13 +62,13 @@
     <p *ngIf="invalido" name = "campoInvalido">
         Campo inválido!
     </p>
-    <p *ngIf="cpf_cnpjduplicado" name = "clienteJaExistente">
+    <p *ngIf="cpf_cnpjduplicado" name = "clienteJa_Existente">
         Já existe um cliente com esse CPF ou CNPJ!
     </p>
     <p *ngIf="atualizado" name = "clienteAtualizado">
         Cliente Atualizado!
     </p>
-    <p *ngIf="cancelAlt" name = "clienteNaoAtualizado">
+    <p *ngIf="cancelAlt" name = "clienteNao_Atualizado">
         Cliente não atualizado!
     </p> 
     </html>
