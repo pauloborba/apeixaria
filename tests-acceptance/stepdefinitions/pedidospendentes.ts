@@ -42,7 +42,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     Given(/^eu vejo o pedido "(\d*)" cadastrado ao cliente "([^\"]*)" no historico$/, async (code, client) => {
-         var all : ElementArrayFinder = element.all(by.name('listaHistorico'));
+        var all : ElementArrayFinder = element.all(by.name('historicoLista'));
         await all;
         var samecode = all.filter((elem => sameCode(elem,code) && sameClient(elem,client)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
@@ -94,7 +94,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     });
 
     When(/^eu restaurar o pedido "(\d*)"$/, async (code) => {
-        var all : ElementArrayFinder = element.all(by.name('listaHistorico'));
+        var all : ElementArrayFinder = element.all(by.name('historicoLista'));
         await all;
         var samecode = all.filter((elem => sameCode(elem,code)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
@@ -161,14 +161,14 @@ defineSupportCode(function ({ Given, When, Then }) {
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
-    Then(/^o pedido "(\d*)" nao esta marcado como pago$/, async (code) => {
+    Then(/^o pedido "(\d*)" nao esta mais marcado como pago$/, async (code) => {
         var all : ElementArrayFinder = element.all(by.name('pendentes'));
         await all;
         var samecode = all.filter((elem => sameCode(elem,code) && notpaid(elem)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
-    Then(/^o pedido "(\d*)" nao esta marcado como entregue$/, async (code) => {
+    Then(/^o pedido "(\d*)" nao esta mais marcado como entregue$/, async (code) => {
         var all : ElementArrayFinder = element.all(by.name('pendentes'));
         await all;
         var samecode = all.filter((elem => sameCode(elem,code) && notdelivered(elem)));

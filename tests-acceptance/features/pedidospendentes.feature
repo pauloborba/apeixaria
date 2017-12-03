@@ -64,5 +64,5 @@ And eu vejo o pedido "3" cadastrado ao cliente "Ricardo" no historico
 When eu restaurar o pedido "3"
 Then eu vejo o pedido "3" na lista de pedidos pendentes
 And eu nao vejo o pedido "3" no historico
-And o pedido "3" nao esta marcado como pago
-And o pedido "3" nao esta marcado como entregue
+And o pedido "3" nao esta mais marcado como pago
+And o pedido "3" nao esta mais marcado como entregue
