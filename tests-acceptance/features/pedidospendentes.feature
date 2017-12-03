@@ -51,7 +51,6 @@ When eu marcar o pedido "3" como entregue
 Then eu vejo o pedido "3" na lista de pedidos pendentes sem atraso
 
 Scenario: Cancelando pedido
-
 Given eu estou na pagina de pedidos pendentes
 And eu vejo o pedido "3" cadastrado ao cliente "Ricardo" na lista de pendentes
 When eu cancelar o pedido "3"
@@ -59,3 +58,11 @@ Then eu nao vejo o pedido "3" na lista de pedidos pendentes
 And eu vejo o pedido "3" no historico
 And o pedido "3" estara marcado como cancelado com "Sim"
 
+Scenario: Restaurando pedido
+Given eu estou na pagina de pedidos pendentes
+And eu vejo o pedido "3" cadastrado ao cliente "Ricardo" no historico
+When eu restaurar o pedido "3"
+Then eu vejo o pedido "3" na lista de pedidos pendentes
+And eu nao vejo o pedido "3" no historico
+And o pedido "3" nao esta marcado como pago
+And o pedido "3" nao esta marcado como entregue
