@@ -12,8 +12,6 @@ import { ProdutoService } from './produto.service';
 export class ProdutosComponent implements OnInit {
    constructor(private produtoService: ProdutoService) {}
    
-   campos: string[] = ["codigobox", "nomebox", "valorbox", "unidade_de_medidabox", "categoriabox"]; 
-   propriedades: string[] = ["codigo", "nome", "valor","unidade_de_medida", "categoria"];
    produto: Produto = new Produto();
    produtos: Produto[] = new Array();
    codrepetido: boolean = false;
@@ -35,6 +33,7 @@ export class ProdutosComponent implements OnInit {
       var campo = null;
       var incompleto = false;
       for (var key in p) {
+        // verifica, para todos os campos do produto se eles possuem valor válido
         if (p.hasOwnProperty(key)) {
           var element = p[key];
           if(element = null || element == undefined || element ==""){

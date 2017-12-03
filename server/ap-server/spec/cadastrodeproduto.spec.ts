@@ -41,7 +41,7 @@ describe("O cadastro de produtos", () => {
     var prod: Produto = new Produto();
     prod.codigo = "001"
     prod.nome = "camarao cinza";
-    prod.valor = "3;
+    prod.valor = 33;
     prod.unid = "kg";
     prod.categoria = "camarões"
     cadastro.criar(prod);
