@@ -16,9 +16,8 @@ export class PedidoComponent implements OnInit {
    pedido: Pedido= new Pedido();
 
    ngOnInit(): void {
-   var get:Pedido= new Pedido();
-    this.route.params.subscribe(params => get.codigo=params['pedidoID']);
-    this.pedidoService.getPedido(get)
+    this.route.params.subscribe(params => pedido.codigo=params['pedidoID']);
+    this.pedidoService.getPedido(pedido)
          .then(pedido => this.pedido = pedido)
          .catch(erro => alert(erro));
     }

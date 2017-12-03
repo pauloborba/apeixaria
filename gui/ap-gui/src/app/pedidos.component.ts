@@ -15,9 +15,6 @@ export class PedidosComponent implements OnInit {
    pedidos: Pedido[];
 
    atualizarPedido(pedido: Pedido): void {
-      if(pedido.entregue&&pedido.pago){
-        //alerta sobre marcar isso
-      }
       this.pedidoService.atualizar(pedido)
          .catch(erro => alert(erro));
    }
@@ -32,6 +29,7 @@ export class PedidosComponent implements OnInit {
 
    verificarAtraso(entrega: string){
       var numbers = entrega.split("/");
+      /** -1, pois os meses em date são de 0 a 11**/
       var date = new Date(Number(numbers[2]), Number(numbers[1])-1, Number(numbers[0]),23,59,59);
       if(date.getTime()<Date.now()){
         return true;

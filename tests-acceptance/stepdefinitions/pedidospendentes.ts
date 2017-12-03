@@ -9,11 +9,12 @@ let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
 let sameClient = ((elem, client) => elem.element(by.name('client')).getText().then(text => text === client));
 let sameCode = ((elem, code) => elem.element(by.name('code')).getText().then(text => text === code));
-let deliveredPaid= ((elem, code) => elem.element(by.name('paidDelivered')).getText().then(text => text === code));
+let paidDelivered= ((elem, code) => elem.element(by.name('paidDelivered')).getText().then(text => text === code));
 let cancelled= ((elem, code) => elem.element(by.name('cancelled')).getText().then(text => text === code));
 let notpaid = ((elem) => elem.element(by.name('paid')).getAttribute('class').then(value => value === 'false'));
 let notdelivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'false'));
 let delivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'true'));
+let paid= ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'true'));
 let outdated = ((elem) => elem.element(by.name('situacao')).getAttribute('class').then(value => value === 'outdated'));
 let pendent = ((elem) => elem.element(by.name('situacao')).getAttribute('class').then(value => value === 'pendent'));
 let sameDate = ((elem, date) => elem.element(by.name('deliverDate')).getText().then(text => text === date));
@@ -31,12 +32,6 @@ defineSupportCode(function ({ Given, When, Then }) {
     Given(/^eu tenho o pedido "(\d*)" cadastrado ao cliente "([^\"]*)" com "(\d*)" unidades de "([^\"]*)" que custa "(\d*)" reais com data de pedido "([^\"]*)" e data de entrega "([^\"]*)"$/, async (code, client, quant, produto,preco, pedido, entrega) => {
         var valor: number= (Number(preco)*Number(quant));
         var options:any = {method: 'POST', uri: ("http://localhost:3000/pedidos"), body:{"cliente": {"nome": client}, "entregue" : false, "pago": false, "lista":[{"produto":{"codigo":"1", "nome":produto, "valor":preco},"quantidade":quant,"valor":valor}],"dataPedido": pedido, "dataEntrega":entrega}, json: true};
-        request(options);
-        request.post("localhost:3000/pedidos");
-    });
-
-    Given(/^eu tenho o pedido "(\d*)" cadastrado ao cliente "([^\"]*)" com data de pedido "([^\"]*)" e data de entrega "([^\"]*)"$/, async (code, client, pedido, entrega) => {
-        var options:any = {method: 'POST', uri: ("http://localhost:3000/pedidos"), body:{"cliente": {"nome": client}, "entregue" : false, "pago": false, "dataPedido": pedido, "dataEntrega":entrega}, json: true};
         request(options);
         request.post("localhost:3000/pedidos");
     });
@@ -163,7 +158,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         await all;
         var samecode = all.filter((elem => sameCode(elem,code)));
         await samecode;
-        samecode = samecode.filter((elem => deliveredPaid(elem,text)));
+        samecode = samecode.filter((elem => paidDelivered(elem,text)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 
