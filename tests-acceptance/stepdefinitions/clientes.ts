@@ -116,6 +116,24 @@ defineSupportCode(function ({ Given, When, Then }) {
         await expect(element(by.name(nomeAviso)).isPresent()).to.eventually.equal(true);
     });
 
+    Then(/^o cliente não é atualizado no sistema com “([^0-9]*)” igual a “([^\"]*)”$/, async(campo, conteudo) => {
+        await $("a[name='clientes']").click();        
+        const c = <string> campo;  
+        conteudo = <string> conteudo;              
+        var allclientes : ElementArrayFinder = element.all(by.name('clientelist'));
+        await allclientes;
+        let same = ((elem, conteudo) => elem.element(by.name(c.replace(/\s/g, '') + 'list')).getText().then(text => text === conteudo)); 
+        await same;       
+        var sameCliente = allclientes.filter(elem => same(elem, conteudo));
+        await sameCliente;
+        await sameCliente.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+    });
+
+    When(/^cancelo a alteração$/, async () => {
+        await $("button[id = 'cancelButton']").click();
+    });
+
+
 
     
 })
