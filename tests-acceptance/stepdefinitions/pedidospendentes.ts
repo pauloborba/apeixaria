@@ -9,7 +9,8 @@ let sleep = (ms => new Promise(resolve => setTimeout(resolve, ms)));
 
 let sameClient = ((elem, client) => elem.element(by.name('client')).getText().then(text => text === client));
 let sameCode = ((elem, code) => elem.element(by.name('code')).getText().then(text => text === code));
-let sameText= ((elem, code) => elem.element(by.name('paidDelivered')).getText().then(text => text === code));
+let deliveredPaid= ((elem, code) => elem.element(by.name('paidDelivered')).getText().then(text => text === code));
+let cancelled= ((elem, code) => elem.element(by.name('cancelled')).getText().then(text => text === code));
 let notpaid = ((elem) => elem.element(by.name('paid')).getAttribute('class').then(value => value === 'false'));
 let notdelivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'false'));
 let delivered = ((elem) => elem.element(by.name('delivered')).getAttribute('class').then(value => value === 'true'));
@@ -77,6 +78,14 @@ defineSupportCode(function ({ Given, When, Then }) {
         await samecode.first().all(by.name('paid')).first().$("input[type='checkbox']").click();
     });
 
+    When(/^eu cancelar o pedido "(\d*)"$/, async (code) => {
+        var all : ElementArrayFinder = element.all(by.name('pendentes'));
+        await all;
+        var samecode = all.filter((elem => sameCode(elem,code)));
+        await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+        await samecode.first().all(by.name('cancel')).first().$("button").click();
+    });
+
 
     Then(/^eu vejo o pedido "(\d*)" na lista de pedidos pendentes$/, async (code) => {
         var all : ElementArrayFinder = element.all(by.name('pendentes'));
@@ -118,7 +127,16 @@ defineSupportCode(function ({ Given, When, Then }) {
         await all;
         var samecode = all.filter((elem => sameCode(elem,code)));
         await samecode;
-        samecode = samecode.filter((elem => sameText(elem,text)));
+        samecode = samecode.filter((elem => deliveredPaid(elem,text)));
+        await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
+    Then(/^o pedido "(\d*)" estara marcado como cancelado com "([^\"]*)"$/, async (code, text) => {
+        var all : ElementArrayFinder = element.all(by.name('historicoLista'));
+        await all;
+        var samecode = all.filter((elem => sameCode(elem,code)));
+        await samecode;
+        samecode = samecode.filter((elem => cancelled(elem,text)));
         await samecode.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
 })
