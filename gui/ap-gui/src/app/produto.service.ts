@@ -4,6 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Produto } from './produto';
+import { ListaProdutosComponent } from './listaprodutos.component';
 
 @Injectable()
 export class ProdutoService {

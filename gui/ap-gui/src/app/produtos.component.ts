@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
 import { Produto } from './produto';
+import { ListaProdutosComponent } from './listaprodutos.component';
 import { ProdutoService } from './produto.service';
 
 @Component({
@@ -17,24 +18,25 @@ export class ProdutosComponent implements OnInit {
    codrepetido: boolean = false;
    campoembranco: boolean = false;
    prodcadastrado: boolean = false;
+   prod: Produto;
 
    criarProduto(p: Produto): void {
     this.codrepetido = this.jaexisteProduto(p);
     this.campoembranco = this.cadastroincompleto(p);
-    if(!(this.campoembranco || this.codrepetido)) {
+    if(!this.campoembranco && !this.codrepetido) {
       this.produtoService.criar(p).then(prod =>{ 
          this.produtos.push(p);
          this.produto = new Produto();         
         })
-       }
-     }
+      }
+    }
 
     cadastroincompleto(p: Produto): boolean {
       var campo = null;
       var incompleto = false;
-      for (var key in p) {
-        // verifica, para todos os campos do produto se eles possuem valor válido
+      for (var key in p) { 
         if (p.hasOwnProperty(key)) {
+          // verifica, para todos os campos do produto se eles possuem valor válido
           var element = p[key];
           if(element = null || element == undefined || element ==""){
             incompleto = true;
@@ -43,7 +45,6 @@ export class ProdutosComponent implements OnInit {
       }
       return incompleto;    
    } 
-
 
    jaexisteProduto(p: Produto): boolean{
     for(var i = 0; i < this.produtos.length; i++){

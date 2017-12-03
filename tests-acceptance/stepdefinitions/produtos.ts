@@ -15,7 +15,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     Given(/^o produto com código "([^\"]*)", nome "([^\"]*)", valor "([^\"]*)", unidade de medida "([^\"]*)" e categoria "([^\"]*)" está cadastrado no sistema$/, async (cod, nome, valor, unid, cat) => {  
         await $("input[name=codigobox]").sendKeys(<string> cod);
         await $("input[name=nomebox]").sendKeys(<string> nome);
-        await $("input[name=valorbox]").sendKeys(<string> valor);
+        await $("input[name=valorbox]").sendKeys(<string> valor)
         await $(`select#unidade_de_medidabox option[value="${<string> unid}"]`).click()
         await $(`select#categoriabox option[value="${<string> cat}"]`).click()
         await $("button#Cadastrar").click();
