@@ -32,6 +32,12 @@ app.post('/pedidos', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.put('/pedido', function (req: express.Request, res: express.Response) {
+  var pedido: Pedido = <Pedido> req.body;
+  pedido = cadastroPedidos.getPedido(pedido);
+  res.send(JSON.stringify(pedido));
+})
+
 app.put('/pedidos', function (req: express.Request, res: express.Response) {
   var pedido: Pedido = <Pedido> req.body;
   pedido = cadastroPedidos.atualizar(pedido);

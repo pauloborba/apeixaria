@@ -53,6 +53,11 @@ export class PedidosComponent implements OnInit {
     this.atualizarPedido(pedido);
    }
 
+   redirecionar(p: Pedido){
+    this.pedidoService.setCode(p);
+
+   }
+
    ngOnInit(): void {
       this.pedidoService.getPedidos()
          .then(pedidos => this.pedidos = pedidos)

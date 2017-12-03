@@ -24,8 +24,8 @@ export class CadastroDePedidos {
     return this.pedidos;
   }
 
-  getPedido(codigo: number){
-  	var result: Pedido = this.pedidos.find(a => a.codigo === codigo);
+  getPedido(pedido: Pedido){
+  	var result: Pedido = this.pedidos.find(a => a.codigo == pedido.codigo);
     return result;
   }
 

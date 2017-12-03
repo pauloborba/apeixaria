@@ -9,6 +9,7 @@ export class PedidoService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private taURL = 'http://localhost:3000';
+  private transfer: Pedido;
 
   constructor(private http: Http) { }
 
@@ -37,8 +38,23 @@ export class PedidoService {
              .catch(this.tratarErro);
   }
 
+   getPedido(pedido: Pedido): Promise<Pedido> {
+    return this.http.put(this.taURL + "/pedido",JSON.stringify(pedido), {headers: this.headers})
+             .toPromise()
+             .then(res => res.json() as Pedido)
+             .catch(this.tratarErro);
+  }
+
   private tratarErro(erro: any): Promise<any>{
     console.error('Acesso mal sucedido ao serviço de pedidos',erro);
     return Promise.reject(erro.message || erro);
+  }
+
+  setCode(pedido){
+    this.transfer=pedido;
+  }
+
+  getCode(): Pedido{
+    return <Pedido> this.transfer;
   }
 }

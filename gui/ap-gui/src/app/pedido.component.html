@@ -1,0 +1,15 @@
+<div>
+  <h1>Pedido #{{pedido.codigo}}</h1>
+  <table>
+    <tr>
+      <th>Produto</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+    </tr>
+    <tr *ngFor="let p of pedido.lista">
+      <td>{{p.produto.nome}}</td>
+      <td>{{p.quantidade}}</td> 
+      <td>{{p.valor}}</td>
+    </tr>
+  </table>
+</div>

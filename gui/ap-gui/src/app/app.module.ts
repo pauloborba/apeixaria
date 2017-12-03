@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PedidosComponent } from './pedidos.component';
 import { PedidoService } from './pedido.service';
+import { PedidoComponent } from './pedido.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PedidosComponent
+    PedidosComponent,
+    PedidoComponent
   ],
   imports: [
     BrowserModule,
@@ -20,9 +22,15 @@ import { PedidoService } from './pedido.service';
     HttpModule, 
     HttpClientModule,
     RouterModule.forRoot([
+      { path: '', redirectTo: 'component-one', pathMatch: 'full' },
       {
         path: 'pedidos',
         component: PedidosComponent
+      },
+      {
+        path: 'pedido/:pedidoID',
+        component: PedidoComponent,
+
       },
     ])
   ],
