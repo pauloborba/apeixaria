@@ -50,11 +50,4 @@ export class PedidoService {
     return Promise.reject(erro.message || erro);
   }
 
-  setCode(pedido){
-    this.transfer=pedido;
-  }
-
-  getCode(): Pedido{
-    return <Pedido> this.transfer;
-  }
 }
