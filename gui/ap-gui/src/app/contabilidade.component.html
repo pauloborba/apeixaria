@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="contabilidade.component.css">
+</head>
+<body>
+	<div class="body">
+		<div id="sidenav" class="sidenav">
+			<span>A Peixaria</span>
+			<a href="#">Clientes</a>
+			<a href="#">Produtos</a>
+			<a href="#">Registrar pedido</a>
+		 	<a href="#">Pedidos pendentes</a>
+		 	<a href="#">Histórico</a>
+		</div>
+		<div class = "pageContent">
+			<div class="contabilidadeHeader">
+				<span>Contabilidade</span>
+			</div>
+
+			<div class="contabilidadeContent">
+				<div class="contabilidadeNavRow">
+					<button id="diario" class="nav"(click)="Diario()" > Diário </button>
+					<button id="semanal" class="nav"(click)="Semanal()"> Semanal </button>
+					<button id="mensal" class="nav"(click)="Mensal()"> Mensal </button>
+				</div>
+				<div class="contabilidadeRow">
+					<div>
+						<label>Bruto: R$</label>
+						<label id="bruto" [(ngModel)]="bruto"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
