@@ -1,0 +1,39 @@
+{
+  "name": "testes-acceptance",
+  "description": "Testes de aceitação do teaching assistant",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "protractor typeScript/config/config.js",
+    "webdriver-update": "webdriver-manager update",
+    "webdriver-start": "webdriver-manager start"
+  },
+  "author": "Paulo Borba",
+  "devDependencies": {
+    "@types/cucumber": "0.0.38",
+    "@types/node": "^8.0.31",
+    "@types/selenium-webdriver": "^3.0.0",
+    "chai": "^4.0.2",
+    "chai-as-promised": "^7.0.0",
+    "cucumber": "^2.3.0",
+    "mkdirp": "^0.5.1",
+    "protractor-cucumber-framework": "^3.1.1"
+  },
+  "dependencies": {
+    "cucumber-html-reporter": "^2.0.0",
+    "protractor": "5.2.0",
+    "ts-node": "^3.1.0",
+    "typescript": "^2.2.1",
+    "@angular/animations": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/compiler": "^5.0.0",
+    "@angular/core": "^5.0.0",
+    "@angular/forms": "^5.0.0",
+    "@angular/http": "^5.0.0",
+    "@angular/platform-browser": "^5.0.0",
+    "@angular/platform-browser-dynamic": "^5.0.0",
+    "@angular/router": "^5.0.0",
+    "@angular/cli": "1.5.2",
+    "@angular/compiler-cli": "^5.0.0",
+    "@angular/language-service": "^5.0.0"
+  }
+}
