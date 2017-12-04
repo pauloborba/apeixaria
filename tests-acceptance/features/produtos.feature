@@ -43,3 +43,13 @@ Then o produto de código "001" da categoria "camarões" possui o valor "27" no 
 Then o pedido pendente do cliente com telefone "123456789" que contém o produto com o código "001" continua com o valor "33"
 Then o histórico até o momento do produto com o código "001", possui o valor "33"
 Then o histórico do cliente com o telefone "123456789" continua com o produto de código "001" com o valor "33"
+
+Scenario: Remoção de produto
+Given o produto com código "001", nome "Camarão Cinza", valor "33", unidade de medida "kg" e categoria "camarões" está cadastrado no sistema
+When deleto o produto da categoria "camarões" com o código "001"
+Given possuo um pedido pendente para o cliente com telefone "123456789" comprando o produto com código "001"
+Given estou na página de Produtos
+Then o produto com código "001" e nome "Camarão cinza" não aparece na categoria "camarões" na listagem de produtos
+Then o pedido pendente do cliente com telefone "123456789" que possui o produto de código "001" não sofre alteração
+Then o histórico do produto com o código "001" não sofreram alteração
+Then o histórico do cliente com telefone "123456789" não sofreram alteração

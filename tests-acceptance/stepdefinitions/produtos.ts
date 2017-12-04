@@ -47,6 +47,10 @@ defineSupportCode(function ({ Given, When, Then }) {
        await $("button#Cadastrar").click();
     });
 
+    When(/^deleto o produto da categoria "([^\"]*)" com código "([^\"]*)"$/, async (cat, cod) => {
+     
+    });
+
     Then(/^o produto com código "([^\"]*)" agora aparece na categoria "([^\"]*)" na listagem de produtos$/, async (cod, cat) => {
         return setTimeout(async () => expect( await element(by.css(`table#${cat}-table tbody tr#id-${cod}`)).isPresent()).to.be.true, 0)
     });
@@ -85,4 +89,15 @@ defineSupportCode(function ({ Given, When, Then }) {
         
     });
 
+    Then(/^o pedido pendente do cliente com telefone "([^\"]*)" que possui o produto de código "([^\"]*)" não sofre alteração$/, async (tel, cod) => {
+        
+    });
+
+    Then(/^o histórico do produto com o código "([^\"]*)" não sofreram alteração$/, async (cod) => {
+        
+    });
+
+    Then(/^o histórico do cliente com telefone "([^\"]*)" não sofreram alteração$/, async (tel) => {
+
+    });
 })
