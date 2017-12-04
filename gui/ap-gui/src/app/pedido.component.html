@@ -1,0 +1,78 @@
+<div class = "pedidoContent">
+	<div class = "visualizarPedidoHeader">
+		<span>Pedido {{pedido.codigo}}</span>
+		<label id="labelPago" ng-if="pago">Pago</label>
+		<label id="labelEntregue" ng-if="entregue" >Entregue</label>
+		<label id="labelCancelado" ng-if="cancelado" >Cancelado</label>
+	</div>
+
+	<div class="visualizarPedidoContent">
+		<div class = visualizarPedidoRow>
+			<div>
+				<label id="labelNome">Nome: {{pedido.cliente.nome}}</label>
+			</div>				
+			<div>
+				<label id="labelTelefone">Telefone: {{pedido.cliente.telefone}}</label>
+			</div>
+		</div>
+
+		<div class = visualizarPedidoRow>
+			<div>
+				<label id="labelDataPedido">Data do pedido: {{pedido.dataPedido}}</label>
+			</div>				
+			<div>
+				<label id="labelDataEntrega">Data de entrega: {{pedido.dataPedido}}</label>
+				
+			</div>
+			
+		</div>
+		<div class = visualizarPedidoRow>
+				 
+			<div>
+
+				<label id="labelLocalRetirada">Local de Retirada: {{pedido.localRetirada}}
+					<input type="text" id="inputLocalRetirada" name="inputLocalRetirada"></label>
+			</div>
+			<div>
+				<label id="labelCondiçãoPagamento">Condição de pagamento: {{pedido.condicaoPagamento}}</label>
+			</div>
+		</div>
+
+		<div class = visualizarPedidoRow>
+
+			<div>
+				<label id="labelDesconto">Desconto: {{pedido.desconto}}</label>
+			</div>
+			<div>
+				<label id="labelTipoDesconto">Tipo de desconto: {{pedido.tipoDesconto}}</label>
+			</div>
+
+		</div>
+
+		<div class = visualizarPedidoRow>
+				<label id="labelListaProdutos">Produto:</label>	
+				<tr>
+				   <th>Nome</th>
+				   <th>Quantidade</th>
+				   <th>Valor</th>
+				</tr>
+				<tr *ngFor="let a of pedidos.lista" name="listaProdutos">
+				   <td name="linhaProduto">{{a.produto.nome}}</td>
+				   <td name="linhaProduto">{{a.quantidade}}</td>
+				   <td name="linhaProduto">{{a.valor}}</td>
+				   
+				</tr>
+		</div>
+
+		<label id="labelCheckboxPago" >Pago:
+			<input id="checkboxPago" type="checkbox" ng-model="pago" ng-init="pago=false" />
+		</label id="labelCheckboxEntregue">
+		<label>Entregue: 
+			<input id="checkboxEntregue" type="checkbox" ng-model="entregue" ng-init="entregue=false" />
+		</label id="labelCheckboxCancelado">
+		<label>Cancelado: 
+		 	<input id="checkboxCancelado" type="checkbox" ng-model="cancelado" ng-init="cancelado=false" />
+		</label>
+		
+		 
+</div>

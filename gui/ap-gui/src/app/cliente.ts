@@ -24,12 +24,6 @@ export class Cliente {
       this.lojista = false;
     }
 
-    clone(): Cliente {
-      const cliente: Cliente = new Cliente();
-      cliente.copyFrom(this);
-      return cliente;
-    }
-
     copyFrom(from: Cliente): void {
       this.nome = from.nome;
       this.cpf_cnpj = from.cpf_cnpj;

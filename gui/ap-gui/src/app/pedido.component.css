@@ -1,0 +1,40 @@
+.pedidoContent{
+    color: #0f82c1;
+    width: 88%;
+    display:flex;
+    flex-direction: column;
+    padding: 30px 0;
+}
+
+.visualizarPedidoHeader{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.visualizarPedidoContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.visualizarPedidoContent label{
+    font-size: 20px;
+    width: 150px;
+    padding: 16px 16px;
+}
+
+.visualizarPedidoRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+    padding-top: 10px;
+}
+.visualizarPedidoRow div{
+    width: 450px;
+    display: flex;
+    align-content: end;
+    align-items: center;
+}
