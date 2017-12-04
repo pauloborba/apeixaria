@@ -1,0 +1,22 @@
+th {
+  background-color: #0f82c1;
+  color: #ffffff;
+} 
+
+td, th {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: #cce6ff;
+}
+
+h2, h3 {
+  color: #3366ff;
+}
+
+.pedidos td {
+  text-align: center;
+}

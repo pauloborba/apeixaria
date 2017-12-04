@@ -1,0 +1,66 @@
+<h2>Histórico de Cliente</h2>
+
+<h3>Cliente</h3>
+<table name="cliente">
+	<tr>
+		<td><label>Nome: </label></td>
+		<td name="nome"><label></label></td> <!-- cliente.nome -->
+	</tr>
+	<tr>
+		<td><label>CPF/CNPJ: </label></td>
+		<td name="cpf_cnpj"><label></label></td> <!-- cliente.cpf_cnpj -->
+	</tr>
+	<tr>
+		<td><label>Endereço: </label></td>
+		<td name="endereco"><label></label></td> <!-- cliente.endereco -->
+	</tr>
+	<tr>
+		<td><label>Data de nascimento: </label></td>
+		<td name="data_nascimento"><label></label></td> <!-- cliente.data_nascimento -->
+	</tr>
+	<tr>
+		<td><label>Telefone: </label></td>
+		<td name="telefone"><label></label></td> <!-- cliente.telefone -->
+	</tr>
+	<tr>
+		<td><label>Email: </label></td>
+		<td name="email"><label></label></td> <!-- cliente.email -->
+	</tr>
+	<tr>
+		<td><label>Consumidor final: </label></td>
+		<td name="consumidor_final" *ngIf="cliente.consumidor_final">Sim</td>
+		<td name="consumidor_final" *ngIf="!cliente.consumidor_final">Não</td>
+	</tr>
+	<tr>
+		<td><label>Logista: </label></td>
+		<td name="logista" *ngIf="cliente.logista">Sim</td>
+		<td name="logista" *ngIf="!cliente.logista">Não</td>
+	</tr>
+</table>
+<br>
+<h3>Pedidos</h3>
+<table name="pedidos">
+	<tr *ngIf="pedidos.length > 0">
+		<th>Data do pedido</th>
+		<th>Código do pedido</th>
+		<th>Produtos</th>
+		<th>Cancelado</th>
+		<th>Entregue</th>
+		<th>Pago</th>
+	</tr>
+	<tr *ngFor="let p of pedidos">
+		<td name="data">{{p.data}}</td>
+		<td name="codigoPedido">{{p.codigo}}</td>
+		<td>
+			<ul *ngFor="let prod of produtos">
+				<li>{{prod.codigo}}</li>
+			</ul>
+		</td>
+		<td name="cancelado" *ngIf="p.cancelado">Sim</td>
+		<td name="cancelado" *ngIf="!p.cancelado">Não</td>
+		<td name="entregue" *ngIf="p.entregue">Sim</td>
+		<td name="entregue" *ngIf="!p.entregue">Não</td>
+		<td name="pago" *ngIf="p.pago">Sim</td>
+		<td name="pago" *ngIf="!p.pago">Não</td>
+	</tr>
+</table>
