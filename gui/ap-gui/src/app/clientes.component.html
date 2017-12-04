@@ -2,59 +2,75 @@
     
     <table>
     <tr>
-       <td><label>Nome </label></td>
-       <td><input [(ngModel)]="cliente.nome" name="namebox"></td>
+       <td><label id = "nomeLabel">Nome </label></td>
+       <td><input [(ngModel)]="cliente.nome" id = "nomeInput"></td>
     </tr>
     <tr>
-       <td><label>CPF ou CNPJ </label></td>
-       <td><input [(ngModel)]="cliente.cpf_cnpj" name="cpf_cnpjbox"></td>
-       <td *ngIf="cpf_cnpjduplicado">
-         Já existe um cliente com esse CPF ou CNPJ
-       </td>
+       <td><label id = "CPF_ou_CNPJLabel">CPF ou CNPJ </label></td>
+       <td><input [(ngModel)]="cliente.cpf_cnpj" id = "CPF_ou_CNPJInput"></td>
     </tr>
     <tr>
-        <td><label>Data de nascimento </label></td>
-        <td><input [(ngModel)]="cliente.data_nascimento"></td> <!-- ver type date -->
-        <td><label>Telefone </label></td>
-        <td><input [(ngModel)]="cliente.telefone"></td>
-        <td><label>E-mail </label></td>
-        <td><input [(ngModel)]="cliente.email"></td>
+        <td><label id = "data_de_nascimentoLabel">Data de nascimento </label></td>
+        <td><input [(ngModel)]="cliente.data_nascimento" id = "data_de_nascimentoInput"></td> 
+        <td><label id = "telefoneLabel">Telefone </label></td>
+        <td><input [(ngModel)]="cliente.telefone" id = "telefoneInput"></td>
+        <td><label id = "e-mailLabel">E-mail </label></td>
+        <td><input [(ngModel)]="cliente.email" id = "e-mailInput"></td>
     </tr>
 
     <tr>
-        <td><label>Consumidor final </label></td>
-        <td><input type="radio" [(ngModel)]="cliente.consumidor_final"></td>
-        <td><label>Lojista </label></td>
-        <td><input type="radio" [(ngModel)]="cliente.lojista"></td>
+        <td><label id = "consumidor_finalLabel">Consumidor final </label></td>
+        <td><input type="radio" [(ngModel)]="cliente.consumidor_final" id = "consumidor_finalInput" name = "options" value="consumidor"></td>
+    </tr>
+    <tr>
+        <td><label id = "lojistaLabel">Lojista </label></td>
+        <td><input type="radio" [(ngModel)]="cliente.lojista" id = "lojistaInput" name = "options" value="lojista"></td>
     </tr>
 
     <tr>
         <td><label>Endereço</label></td>
     </tr>
     <tr>
-        <td><label>Rua </label></td>
-        <td><input [(ngModel)]="cliente.endereco.rua"></td>
-        <td><label>Numero </label></td>
-        <td><input [(ngModel)]="cliente.endereco.numero"></td>
+        <td><label id = "ruaLabel">Rua </label></td>
+        <td><input [(ngModel)]="cliente.endereco.rua" id = "ruaInput"></td>
+        <td><label id = "numeroLabel">Numero </label></td>
+        <td><input [(ngModel)]="cliente.endereco.numero" id = "numeroInput"></td>
     </tr>
 
     <tr>
-        <td><label>Cidade </label></td>
-        <td><input [(ngModel)]="cliente.endereco.cidade"></td>
-        <td><label>Bairro </label></td>
-        <td><input [(ngModel)]="cliente.endereco.bairro"></td>
+        <td><label id = "cidadeLabel">Cidade </label></td>
+        <td><input [(ngModel)]="cliente.endereco.cidade" id = "cidadeInput"></td>
+        <td><label id = "bairroLabel">Bairro </label></td>
+        <td><input [(ngModel)]="cliente.endereco.bairro" id = "bairroInput"></td>
     </tr>
 
     <tr>
-        <td><label>Ponto de referência </label></td>
-        <td><input [(ngModel)]="cliente.endereco.ponto_referencia"></td>
+        <td><label id = "ponto_de_referenciaLabel">Ponto de referência </label></td>
+        <td><input [(ngModel)]="cliente.endereco.ponto_referencia" id = "ponto_de_referenciaInput"></td>
     </tr>
 
 
     <tr>
-        <td><button (click)="criarCliente(cliente)">Adicionar</button></td>
+        <td><button (click)="criarCliente(cliente)" id = "saveButton">Adicionar</button></td>
+        <td><button (click)="atualizarCliente(cliente)" id = "attButton">Alterar</button></td>
+        <td><button (click)="cancelarAlteracao(cliente)" id = "cancelButton">Cancelar</button></td>        
     </tr>        
+   
     </table>
-    
+    <p *ngIf="!completo" name = "campoObrigatorio">
+        Campo obrigatório não preenchido!
+    </p>
+    <p *ngIf="invalido" name = "campoInvalido">
+        Campo inválido!
+    </p>
+    <p *ngIf="cpf_cnpjduplicado" name = "clienteJa_Existente">
+        Já existe um cliente com esse CPF ou CNPJ!
+    </p>
+    <p *ngIf="atualizado" name = "clienteAtualizado">
+        Cliente Atualizado!
+    </p>
+    <p *ngIf="cancelAlt" name = "clienteNao_Atualizado">
+        Cliente não atualizado!
+    </p> 
     </html>
     

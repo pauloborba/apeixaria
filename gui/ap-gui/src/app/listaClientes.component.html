@@ -1,0 +1,16 @@
+<html>
+        <table>
+        <tr>
+           <th name = "nomelist">Nome</th>
+           <th name = "telefonelist">Telefone</th>
+           <th name = "opcaolist">Tipo</th>
+        </tr>
+        <tr *ngFor="let a of clientes" name="clientelist">
+           <td name="nomelist">{{a.nome}}</td>
+           <td name="telefonelist">{{a.telefone}}</td>
+           <td *ngIf = "a.consumidor_final" name = "opcaolist">Consumidor final</td>
+           <td *ngIf = "a.lojista" name = "opcaolist">Lojista</td>           
+        </tr>
+        </table>
+        
+        </html>
