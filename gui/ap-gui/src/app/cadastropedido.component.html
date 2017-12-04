@@ -36,6 +36,30 @@
 				<div class = "cadastroPedidoRow">
 
 					<div>
+						<label>Data do pedido: </label>
+						<input type="text" name="dataPedido" placeholder="dd/mm/aaaa" [(ngModel)]="pedido.dataPedido">
+					</div>				
+					<div>
+						<label>Data de entrega: </label>
+						<input type="text" name="dataEntrega" placeholder="dd/mm/aaaa" [(ngModel)]="pedido.dataEntrega">
+					</div>
+					
+				</div>
+				<div class = "cadastroPedidoRow">
+						
+					<div>
+						<label>Local de Retirada: </label>
+						<input type="text" name="localRetirada" placeholder="Local de retirada" [(ngModel)]="pedido.localRetirada">
+					</div>
+					<div>
+						<label>Condição de pagamento: </label>
+						<input type="text" name="condicaoPagamento" placeholder="À vista, Cartão ou Fiado" [(ngModel)]="pedido.condicaoPagamento">
+					</div>
+					
+				</div>
+				<div class = "cadastroPedidoRow">
+
+					<div>
 						<label>Desconto: </label>
 						<input type="text" name="desconto" placeholder="Desconto" [(ngModel)]="pedido.desconto">
 					</div>
@@ -83,6 +107,7 @@
 					<div [(ngModel)]="total"></div>
 				</div>
 			</div>
+			<button id = "btn" (click)="cadastrar()">Cadastrar</button>
 
 		</div>
 

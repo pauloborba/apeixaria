@@ -68,4 +68,15 @@ export class cadastroPedidoComponent {
 		this.total = 0;
 	}
 
+	cadastrar(): void {
+		pedido: Pedido = this.pedidoService.criar(this.pedido);
+		this.pedido = new Pedido();
+		this.nome = "";
+		this.telefone = "";
+		this.subtotal = 0;
+		this.total = 0;
+		this.nomeProduto = "";
+		this.quantidade = 0;
+		alert("Cadastro bem sucedido");
+	}
 }
