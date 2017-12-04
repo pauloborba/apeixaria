@@ -21,6 +21,10 @@ defineSupportCode(function ({ Given, When, Then }) {
         await $("button#Cadastrar").click();
      })
 
+     Given(/^possuo um pedido pendente para o cliente com telefone "([^\"]*)" comprando o produto com código "([^\"]*)"$/, async (tel, cod) => {
+        
+     })
+
     When(/^preencho o campo "([^\"]*)" com "([^\"]*)"$/, async (campo, valor) => {
         var c = <string> campo;
         var box = c.replace(/\s/g, '_') + "box";
@@ -31,6 +35,12 @@ defineSupportCode(function ({ Given, When, Then }) {
         var c = <string> campo;
         var box = c.replace(/\s/g, '_') + "box";
         await $(`select#${box} option[value="${<string> item}"]`).click()
+    });
+
+    When(/^altero o valor do produto da categoria "([^\"]*)" com código "([^\"]*)" para "([^\"]*)"$/, async (cat, cod, valor) => {
+        var c = <string> cat;
+        cat = c.replace(/\s/g, '_') + "box";
+        return setTimeout(async () => expect(await element(by.css(`table#${cat}-table tbody tr#id-${cod} td[name='valorlist']`)).sendKeys(<string> valor)), 0)
     });
 
     When(/^finalizo o cadastro$/, async () => {
@@ -49,12 +59,30 @@ defineSupportCode(function ({ Given, When, Then }) {
         return setTimeout(async () => expect((await element(by.css(`table#${cat}-table tbody tr#id-${cod} td[name='nomelist']`)).getText()) != nome).to.be.true, 0)
     });
 
+    Then(/^o produto de código "([^\"]*)" da categoria "([^\"]*)" possui o valor "([^\"]*)" no sistema$/, async (cod, cat, valor) => {
+        var c = <string> cat;
+        cat = c.replace(/\s/g, '_') + "box";
+        return setTimeout(async () => expect((await element(by.css(`table#${cat}-table tbody tr#id-${cod} td[name='valorlist']`)).getText()) == valor).to.be.true, 0)
+    });
+
     Then(/^uma mensagem de erro por campo não preenchido aparecerá na tela$/, async () => {
         expect(await element(by.id('campoembranco')).isPresent()).to.be.true;
     });
 
     Then(/^uma mensagem de erro por código repetido aparecerá na tela$/, async () => {
         return setTimeout(async () => expect( await element(by.css(`codrepetido`)).isPresent()).to.be.true, 0)
+    });
+
+    Then(/^o pedido pendente do cliente com telefone "([^\"]*)" que contém o produto com o código "([^\"]*)" continua com o valor "([^\"]*)"$/, async (tel, cod, val) => {
+        
+    });
+
+    Then(/^o histórico até o momento do produto com o código "([^\"]*)", possui o valor "([^\"]*)"$/, async (cod, val) => {
+        
+    });
+
+    Then(/^o histórico do cliente com o telefone "([^\"]*)" continua com o produto de código "([^\"]*)" com o valor "([^\"]*)"$/, async (tel, cod, val) => {
+        
     });
 
 })

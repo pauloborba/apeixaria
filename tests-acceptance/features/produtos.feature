@@ -33,3 +33,13 @@ When seleciono "camarões" para o campo "categoria"
 When finalizo o cadastro
 Then o produto com código "003" e nome "Filé de camarão" não aparece na categoria "camarões" na listagem de produtos
 Then uma mensagem de erro por código repetido aparecerá na tela
+
+Scenario: A alteração do preço de um produto cadastrado está correta
+Given o produto com código "001", nome "Camarão Cinza", valor "33", unidade de medida "kg" e categoria "camarões" está cadastrado no sistema
+Given possuo um pedido pendente para o cliente com telefone "123456789" comprando o produto com código "001"
+Given estou na página de Produtos
+When altero o valor do produto da categoria "camarões" com código "001" para "27"
+Then o produto de código "001" da categoria "camarões" possui o valor "27" no sistema
+Then o pedido pendente do cliente com telefone "123456789" que contém o produto com o código "001" continua com o valor "33"
+Then o histórico até o momento do produto com o código "001", possui o valor "33"
+Then o histórico do cliente com o telefone "123456789" continua com o produto de código "001" com o valor "33"
