@@ -26,6 +26,9 @@ export class cadastroPedidoComponent {
 	nome: string = "";
 	telefone: string = "";
 	clienteNaoCadastrado: boolean = false;
+	nomeProduto: string = "";
+	quantidade: number = 0;
+	produtos: Produto[] = [];
 
 	verificar(nome: string): void {
 		var clientes: Cliente[] = [];
@@ -39,6 +42,20 @@ export class cadastroPedidoComponent {
 		} else {
 			this.clienteNaoCadastrado = false;
 		}
+	}
+
+	adicionar(nomeProduto: string, quantidade: number): void {
+		this.produtoService.getProdutos();
+        	.then(as => this.produtos = as)
+        	.catch(erro => alert(erro));
+		var produto: Produto = null;
+		produto = this.produtos.find(a => a.nome == nomeProduto);
+		var itemdecompra: ItemDeCompra = new ItemDeCompra();
+	    itemdecompra.setProduto(produto);
+	    itemdecompra.setQuantidade(quantidade);
+	    this.pedido.lista.push(itemdecompra);
+	    this.nomeProduto = "";
+	    this.quantidade = 0;
 	}
 
 }

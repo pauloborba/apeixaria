@@ -116,3 +116,20 @@ color: #fefefe;
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+.cadastroPedidoFooter{
+    display: flex;
+    justify-content: center;
+}
+
+#btn{
+    width: 100px;
+    height: 30px;
+    background-color: #0f82c1; 
+    color: #f3f3f3;
+    font-size: 15px;
+}
+
+button:hover {
+    cursor: pointer;
+}

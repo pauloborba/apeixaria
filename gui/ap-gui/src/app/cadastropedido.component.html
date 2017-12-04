@@ -32,7 +32,31 @@
 				</div>
 				<div id="messageError" *ngIf="clienteNaoCadastrado">
 					Cliente não cadastrado
-				</div>	
+				</div>
+				<div class = "cadastroPedidoRow">
+
+					<div>
+						<label>Produto: </label>
+						<input type="text" name="nomeProduto" placeholder="Produto" [(ngModel)]="nomeProduto">
+					</div>
+					<div>
+						<label>Quantidade: </label>
+						<input type="text" name="quantidade" placeholder="Quantidade" [(ngModel)]="quantidade">
+					</div>
+					
+				</div>
+				<div class = "cadastroPedidoAdicionar">
+					<button id = "btn" (click)="adicionar(nomeProduto,quantidade)">Adicionar</button>
+				</div>
+			</div>
+			<div class = "cadastroPedidoFooter">
+				<table>
+					<tr *ngFor="let a of pedido.lista" name="produtoLista">
+					   <td name="itemProduto">{{a.produto.nome}}</td>
+					   <td name="itemQuantidade">{{a.quantidade}}</td>
+					   <td>{{a.produto.unid}}</td>
+					</tr>
+				</table>	
 			</div>
 
 		</div>
