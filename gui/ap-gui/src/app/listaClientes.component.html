@@ -1,0 +1,24 @@
+<h2>Lista de Clientes</h2>
+
+<div class="sem-clientes-cadastrados" *ngIf="clientes.length == 0">
+	<h3>Não existem clientes cadastrados no sistema.</h3>
+</div>
+
+<table class="tabela-clientes">
+	<tr *ngIf="clientes.length > 0">
+		<th>Nome</th>
+		<th>Telefone</th>
+		<th>Consumidor final</th>
+		<th>Lojista</th>
+	</tr>
+	<tr *ngFor="let c of clientes">
+		<td name="nome">{{c.nome}}</td>
+		<td name="telefone">{{c.telefone}}</td>
+		<td name="consumidor_final" *ngIf="c.consumidor_final">Sim</td>
+		<td name="consumidor_final" *ngIf="!c.consumidor_final">Não</td>
+		<td name="lojista" *ngIf="c.lojista">Sim</td>
+		<td name="lojista" *ngIf="!c.lojista">Não</td>
+		<td><button name="editar" routerLink="/cadastrocliente">Editar</button></td>	<!-- altera info do cliente c -->
+		<td><button name="historico" routerLink="/historicocliente">Histórico</button></td> <!-- visualiza historico do cliente c -->
+	</tr>
+</table>

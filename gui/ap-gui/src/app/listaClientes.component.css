@@ -1,0 +1,30 @@
+th {
+  background-color: #0f82c1;
+  color: #ffffff;
+} 
+
+td, th {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: #cce6ff;
+}
+
+h2, .sem-clientes-cadastrados {
+  color: #3366ff;
+}
+
+.editar {
+  text-align: center;
+  background: #ff6600;
+  color: #fff;
+}
+
+.historico-cliente {
+	text-align: center;
+	background: #ff3300;
+	color: #fff;
+}
