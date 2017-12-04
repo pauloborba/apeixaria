@@ -58,4 +58,8 @@ export class cadastroPedidoComponent {
 	    this.quantidade = 0;
 	}
 
+	limpar(): void {
+		this.pedido.lista = [];
+	}
+
 }
