@@ -50,7 +50,8 @@ describe("Atualização dos valores de contabilidade", () => {
     expect(pedido.valorTotal).toBe(12);
     expect(contabilidade.bruto).toBe(12);
     expect(contabilidade.lucro).toBe(9);
-    expect(contabilidade.ArrayProduto[0].bruto).toBe(9);
+    expect(contabilidade.ArrayProduto[0].bruto).toBe(12);
+    expect(contabilidade.ArrayProduto[0].peso).toBe(1);
   })
 
 })
