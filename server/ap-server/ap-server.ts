@@ -10,7 +10,7 @@ var cadastro: CadastroDeProdutos = new CadastroDeProdutos();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
     res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 }
@@ -40,6 +40,17 @@ app.put('/produtos', function (req: express.Request, res: express.Response) {
     res.send({"success": "O produto foi atualizado com sucesso"});
   } else {
     res.send({"failure": "O produto não pode ser atualizado"});
+  }
+})
+
+app.put('/deleteProduto', function (req: express.Request, res: express.Response) {
+  var prod: Produto = <Produto> req.body;
+  var cod: String = prod.codigo;
+  if (cadastro.deletar(cod)) {
+    res.send(JSON.stringify(cadastro.getProdutos()));
+  } else {
+    console.log()
+    res.send({"failure": "O produto não pode ser deletado"});
   }
 })
 

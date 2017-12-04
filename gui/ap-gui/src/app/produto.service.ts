@@ -21,7 +21,6 @@ export class ProdutoService {
        if (res.json().success) {return produto;} else {return null;}
     })
     .catch(this.tratarErro);
-
   }
 
   alterar(produto: Produto): Promise<Produto>{
@@ -38,6 +37,13 @@ export class ProdutoService {
 
   getProdutos(): Promise<Produto[]> {
     return this.http.get(this.apURL + "/produtos")
+    .toPromise()
+    .then(res => res.json() as Produto[])
+    .catch(this.tratarErro);
+  }
+  
+  deletar(produto: Produto): Promise<Produto[]>{
+    return this.http.put(this.apURL+ "/deleteProduto",JSON.stringify(produto) , {headers: this.headers})
     .toPromise()
     .then(res => res.json() as Produto[])
     .catch(this.tratarErro);

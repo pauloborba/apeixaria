@@ -5,7 +5,7 @@ var Produto = /** @class */ (function () {
         this.clean();
     }
     Produto.prototype.clean = function () {
-        this.codigo = null;
+        this.codigo = '';
         this.nome = '';
         this.valor = null;
         this.unid = '';

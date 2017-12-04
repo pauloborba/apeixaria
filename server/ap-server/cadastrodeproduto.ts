@@ -20,6 +20,15 @@ export class CadastroDeProdutos {
     return result;
   }
 
+  deletar(codigo: String): Produto[] {
+    var idx;
+    for(let i = 0; i < this.produtos.length; i++ ){
+      if(this.produtos[i].codigo === codigo){
+        this.produtos.splice(i, 1)
+      }
+    }
+    return this.produtos;
+  }
 
   getProdutos(): Produto[] {
     return this.produtos;

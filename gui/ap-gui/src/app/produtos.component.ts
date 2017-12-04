@@ -60,16 +60,20 @@ export class ProdutosComponent implements OnInit {
      .catch(erro => alert(erro));
     }
 
+    deletarProduto(p: Produto) {
+      this.produtoService.deletar(p)
+      .then(prods =>{
+        console.log(prods)
+        this.produtos = prods})
+      .catch(erro => alert(erro));
+     }
     
     ngOnInit(): void {
-     console.log();
      this.produtoService.getProdutos()
-         .then(prods => this.produtos = prods)
+         .then(prods => {
+          console.log(prods) 
+          this.produtos = prods})
          .catch(erro => alert(erro));
     }
-
-    onMove(): void {
-    }
-
 
 }

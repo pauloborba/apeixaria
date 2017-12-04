@@ -7,23 +7,12 @@ var CadastroDeProdutos = /** @class */ (function () {
     }
     CadastroDeProdutos.prototype.criar = function (produto) {
         var result = null;
-        if (this.codNaoCadastrado(produto.codigo)) {
-            result = new produto_1.Produto();
-            result.copyFrom(produto);
-            this.produtos.push(result);
-        }
+        result = new produto_1.Produto();
+        result.copyFrom(produto);
+        this.produtos.push(result);
         return result;
     };
-    CadastroDeProdutos.prototype.codNaoCadastrado = function (cod) {
-        for (var _i = 0, _a = this.produtos; _i < _a.length; _i++) {
-            var i = _a[_i];
-            if (i.codigo == cod)
-                return false;
-        }
-        return true;
-        //return !this.produtos.find(p => p.codigo == cod);
-    };
-    CadastroDeProdutos.prototype.atualizar = function (produto) {
+    CadastroDeProdutos.prototype.alterar = function (produto) {
         var result;
         for (var _i = 0, _a = this.produtos; _i < _a.length; _i++) {
             var i = _a[_i];
@@ -33,9 +22,15 @@ var CadastroDeProdutos = /** @class */ (function () {
         if (result)
             result.copyFrom(produto);
         return result;
-        //var result: Produto = this.produtos.find(p => p.codigo == produto.codigo);
-        //if (result) result.copyFrom(produto);
-        //return result;
+    };
+    CadastroDeProdutos.prototype.deletar = function (codigo) {
+        var idx;
+        for (var i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i].codigo === codigo) {
+                this.produtos.splice(i, 1);
+            }
+        }
+        return this.produtos;
     };
     CadastroDeProdutos.prototype.getProdutos = function () {
         return this.produtos;

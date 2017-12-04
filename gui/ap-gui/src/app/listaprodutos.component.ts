@@ -19,4 +19,8 @@ export class ListaProdutosComponent implements OnInit {
    this.produtoComponent.alterarValor(produto);
   }
 
+  deletarProduto(produto: Produto){
+    this.produtoComponent.deletarProduto(produto);
+  }
+ 
 }

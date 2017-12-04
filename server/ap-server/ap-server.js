@@ -8,7 +8,7 @@ exports.app = app;
 var cadastro = new cadastrodeproduto_1.CadastroDeProdutos();
 var allowCrossDomain = function (req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
 };
@@ -28,13 +28,25 @@ app.post('/produtos', function (req, res) {
     }
 });
 app.put('/produtos', function (req, res) {
+    console.log("entrou no ap");
     var prod = req.body;
-    prod = cadastro.atualizar(prod);
+    prod = cadastro.alterar(prod);
     if (prod) {
         res.send({ "success": "O produto foi atualizado com sucesso" });
     }
     else {
         res.send({ "failure": "O produto não pode ser atualizado" });
+    }
+});
+app.put('/deleteProduto', function (req, res) {
+    var prod = req.body;
+    var cod = prod.codigo;
+    if (cadastro.deletar(cod)) {
+        res.send(JSON.stringify(cadastro.getProdutos()));
+    }
+    else {
+        console.log();
+        res.send({ "failure": "O produto não pode ser deletado" });
     }
 });
 var server = app.listen(3000, function () {
