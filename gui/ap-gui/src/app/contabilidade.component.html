@@ -35,6 +35,16 @@
 					</div>
 				</div>
 			</div>
+			<div class="Produtos">Produtos</div>
+			<div class="contabilidadeFooter">
+					<table>
+						<tr *ngFor="let a of contabilidade.ArrayProduto" name="arrayProduto">
+							<td name="nomeProduto"><b>{{a.produto.nome}}</b></td>
+							<td>Bruto: R$ </td>
+							<td name="brutoProduto">{{a.bruto}}</td>
+						</tr>
+					</table>
+			</div>
 		</div>
 	</div>
 </body>

@@ -115,3 +115,8 @@ color: #fefefe;
     padding:15px 10px;
     margin-top: 8px;
 }
+
+.Produtos {
+    display: flex;
+    justify-content: center;
+}
