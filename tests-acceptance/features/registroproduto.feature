@@ -20,3 +20,11 @@ Given O pedido “003” foi “5Kg” de “Salmão”
 When Eu selecionar a opção “Salmão”
 Then Eu verei no campo Peso total do produto “Salmão”  o valor “27Kg”
 
+Scenario: Valor do desconto total de cada produto é calculado corretamente
+Given Estou na página de “Histórico de Produtos”
+Given O “salmão” custa “R$ 50,00" o Kg
+Given O pedido "1" cadastrado ao cliente "joao" com "12" unidades de "salmão" possui um valor bruto de R$ "1200" e recebeu um desconto de "10" %
+Given O pedido "2" cadastrado ao cliente "maria" com "5" unidades de "salmão" possui um valor bruto de R$ "500" e recebeu um desconto de "15" %
+Given O pedido "3" cadastrado ao cliente "jose" com "2" unidades de "salmão" possui um valor bruto de R$ "200"
+Then Eu verei no campo Lucro do produto “Salmão” o valor R$ “1255,00”
+

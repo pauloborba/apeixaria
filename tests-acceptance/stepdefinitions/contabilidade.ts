@@ -35,7 +35,7 @@ defineSupportCode(function ({ Given, When, Then }) {
         request.post("localhost:3000/pedidos");
     });
 
-    Then(/^ Eu verei no campo peso do produto "([^\"]*)" o peso "([^\"]*)" KG $/, async (produto, valor) => {
+    Then(/^ Eu verei no campo lucro do produto "([^\"]*)" o lucro R$ "([^\"]*)" $/, async (produto, valor) => {
         //verificar o campo de peso
     });
 
