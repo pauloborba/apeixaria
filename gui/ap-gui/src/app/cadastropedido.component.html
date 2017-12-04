@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="cadastropedido.component.css">
+</head>
+<body>
+	<div class="body">
+		<div id="sidenav" class="sidenav">
+			<span>A Peixaria</span>
+			<a href="#">Clientes</a>
+			<a href="#">Produtos</a>
+			<a href="#">Registrar pedido</a>
+		 	<a href="#">Pedidos pendentes</a>
+		 	<a href="#">Histórico</a>
+		</div>
+		<div class = "pageContent">
+			<div class = "cadastroPedidoHeader">
+				<span>Cadastro de pedido</span>
+			</div>
+
+			<div class="cadastroPedidoContent">
+				<div class = "cadastroPedidoRow">
+					<div>
+						<label>Nome: </label>
+						<input type="text" name="nome" placeholder="Nome" [(ngModel)]="nome">
+						<button id="verificar-cliente-btn" (click)="verificar(nome)">Verificar</button>
+					</div>				
+					<div>
+						<label>Telefone: </label>
+						<input type="text" name="telefone" placeholder="Telefone" [(ngModel)]="telefone">
+					</div>
+				</div>
+				<div id="messageError" *ngIf="clienteNaoCadastrado">
+					Cliente não cadastrado
+				</div>	
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>

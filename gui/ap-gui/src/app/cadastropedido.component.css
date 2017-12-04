@@ -1,0 +1,118 @@
+body {
+    font-family: "Lato", sans-serif;
+    background-color: #fefefe;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.body{
+    display:flex;
+    flex-direction: row;
+}
+.sidenav {
+    font-size:20px;
+    height: 100vh;
+    width: 12em;
+    top: 0;
+    left: 0;
+    background-color: #0f82c1;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.sidenav a {
+    padding: 16px 0;
+    text-decoration: none;
+    color: #fefefe;
+    
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #e9743f;
+}
+
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.pageContent{
+    color: #0f82c1;
+    width: 88%;
+    display:flex;
+    flex-direction: column;
+    padding: 30px 0;
+    align-items: center;
+}
+
+.cadastroPedidoHeader{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.cadastroPedidoContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastroPedidoContent label{
+    font-size: 20px;
+    width: 150px;
+    padding: 16px 16px;
+}
+
+.cadastroPedidoContent input{
+    font-size: 15px;
+    width: 180px;
+    height: 25px;
+    padding: 5px 0px;
+}
+
+.cadastroPedidoRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    padding-top: 10px;
+}
+
+.cadastroPedidoRow div{
+    width: 450px;
+    display: flex;
+    align-content: end;
+    align-items: center;
+}
+
+#verificar-cliente-btn{
+    width: 100px;
+    height: 30px;
+    background-color: #0f82c1; 
+    color: #f3f3f3;
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+.sidenav span{
+padding-top: 25px;
+font-size: 30px;
+color: #fefefe;
+}
+
+#messageError {
+    color: red;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
