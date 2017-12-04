@@ -36,6 +36,18 @@
 				<div class = "cadastroPedidoRow">
 
 					<div>
+						<label>Desconto: </label>
+						<input type="text" name="desconto" placeholder="Desconto" [(ngModel)]="pedido.desconto">
+					</div>
+					<div>
+						<label>Tipo de desconto: </label>
+						<input type="text" name="tipoDesconto" placeholder="% ou R$" [(ngModel)]="pedido.tipoDesconto">
+					</div>
+
+				</div>
+				<div class = "cadastroPedidoRow">
+
+					<div>
 						<label>Produto: </label>
 						<input type="text" name="nomeProduto" placeholder="Produto" [(ngModel)]="nomeProduto">
 					</div>
@@ -60,6 +72,16 @@
 			</div>
 			<div>
 				<button id = "btn" (click)="limpar()">Limpar</button>
+			</div>
+			<div class="valores">
+				<div class="valor">
+					<label>Subtotal: R$ </label>
+					<div [(ngModel)]="subtotal"></div>
+				</div>
+				<div class="valor">
+					<label>Total: R$ </label>
+					<div [(ngModel)]="total"></div>
+				</div>
 			</div>
 
 		</div>

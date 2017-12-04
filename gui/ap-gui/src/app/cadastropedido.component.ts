@@ -29,6 +29,8 @@ export class cadastroPedidoComponent {
 	nomeProduto: string = "";
 	quantidade: number = 0;
 	produtos: Produto[] = [];
+	subtotal: number = 0;
+	total: number = 0;
 
 	verificar(nome: string): void {
 		var clientes: Cliente[] = [];
@@ -56,10 +58,14 @@ export class cadastroPedidoComponent {
 	    this.pedido.lista.push(itemdecompra);
 	    this.nomeProduto = "";
 	    this.quantidade = 0;
+	    this.subtotal += produto.valor;
+	    this.total += (produto.valor * this.pedido.desconto) / 100;
 	}
 
 	limpar(): void {
 		this.pedido.lista = [];
+		this.subtotal = 0;
+		this.total = 0;
 	}
 
 }
