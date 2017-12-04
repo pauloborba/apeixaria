@@ -60,6 +60,8 @@ describe("O cadastro de clientes", () => {
 
     cliente.telefone = "88978967768";
     cadastro.atualizar(cliente);
+    expect(cadastro.getClientes().length).toBe(1);
+    cliente = cadastro.getClientes()[0];
 
     expect(cliente.telefone).toBe("88978967768");
     
