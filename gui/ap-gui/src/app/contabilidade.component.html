@@ -5,14 +5,6 @@
 </head>
 <body>
 	<div class="body">
-		<div id="sidenav" class="sidenav">
-			<span>A Peixaria</span>
-			<a href="#">Clientes</a>
-			<a href="#">Produtos</a>
-			<a href="#">Registrar pedido</a>
-		 	<a href="#">Pedidos pendentes</a>
-		 	<a href="#">Histórico</a>
-		</div>
 		<div class = "pageContent">
 			<div class="contabilidadeHeader">
 				<span>Contabilidade</span>
@@ -40,6 +32,8 @@
 					<table>
 						<tr *ngFor="let a of contabilidade.ArrayProduto" name="arrayProduto">
 							<td name="nomeProduto"><b>{{a.produto.nome}}</b></td>
+							<td>Lucro: R$ </td>
+							<td name="lucroProduto">{{a.lucro}}</td>
 							<td>Bruto: R$ </td>
 							<td name="brutoProduto">{{a.bruto}}</td>
 							<td>Quantidade:</td>

@@ -28,7 +28,7 @@ export class ContabilidadeComponent implements OnInit {
 			var desconto = pedido.Desconto;
 			var bruto = preco * quantidade;
 			var lucro = (bruto/100) * desconto;
-			incrementarValorProduto(bruto, quantidade, indice);
+			incrementarValorProduto(lucro, bruto, quantidade, indice);
 			incrementarValor(lucro, bruto);
 		}
 		this.contabilidadeService.atualizar(this.contabilidade);
@@ -38,6 +38,7 @@ export class ContabilidadeComponent implements OnInit {
 		this.lucro = this.contabilidade.lucroDiario;
 		this.bruto = this.contabilidade.brutoDiario;
 		for(let i of ArrayProduto){
+			i.lucro = i.lucroDiario;
 			i.bruto = i.brutoDiario;
 			i.peso = i.pesoDiario;
 		}
@@ -47,6 +48,7 @@ export class ContabilidadeComponent implements OnInit {
 		this.lucro = this.contabilidade.lucroSemanal;
 		this.bruto = this.contabilidade.brutoSemanal;
 		for(let i of ArrayProduto){
+			i.lucro = i.lucroSemanal;
 			i.bruto = i.brutoSemanal;
 			i.peso = i.pesoSemanal;
 		}
@@ -56,12 +58,13 @@ export class ContabilidadeComponent implements OnInit {
 		this.lucro = this.contabilidade.lucroMensal;
 		this.bruto = this.contabilidade.brutoMensal;
 		for(let i of ArrayProduto){
+			i.lucro = i.lucroMensal;
 			i.bruto = i.brutoMensal;
 			i.peso = i.pesoMensal;
 		}
   	}
 
-	incrementarValor(lucro: decimal, bruto: decimal){ //V1
+	incrementarValor(lucro: decimal, bruto: decimal){
 		contabilidade.lucroDiario +=  lucro;
 		contabilidade.lucroSemanal += lucro;
 		contabilidade.lucroMensal += lucro;
@@ -70,8 +73,11 @@ export class ContabilidadeComponent implements OnInit {
 		contabilidade.brutoMensal += bruto;
 	}
 
-	incrementarValorProduto(bruto: decimal, peso: decimal, indice: integer){ //V1
+	incrementarValorProduto(lucro: decimal, bruto: decimal, peso: decimal, indice: integer){ 
 		var prod: RegistroProduto = this.contabilidade.ArrayProduto[indice];
+		prod.lucroDiario +=  lucro;
+		prod.lucroSemanal += lucro;
+		prod.lucroMensal += lucro;
 		prod.brutoDiario += bruto;
 		prod.brutoSemanal += bruto;
 		prod.brutoMensal += bruto;
