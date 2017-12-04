@@ -16,3 +16,9 @@ When eu preencho o campo “Produto” com “Camarão Cinza”
 And	eu preencho o campo “Quantidade” com “5”
 And eu adiciono o produto e a quantidade na lista
 Then eu vejo o produto adicionado na lista de produtos do pedido
+
+Scenario: Limpar lista de produtos do pedido
+Given eu estou na página de cadastro de pedido
+And eu vejo o produto “Camarão Cinza” adicionado na lista de produtos do pedido
+When eu limpo a lista de produtos do pedido
+Then eu vejo a lista vazia
