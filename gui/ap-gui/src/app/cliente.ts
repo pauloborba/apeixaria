@@ -22,6 +22,7 @@ export class Cliente {
       this.email = '';
       this.consumidor_final = false;
       this.lojista = false;
+      this.endereco = new Endereco();
     }
 
     copyFrom(from: Cliente): void {

@@ -1,3 +1,4 @@
+/*
 import { Produto } from '../../gui/ap-gui/src/app/produto';
 
 export class CadastroDeProdutos {
@@ -24,3 +25,4 @@ export class CadastroDeProdutos {
     return this.produtos;
   }
 }
+*/

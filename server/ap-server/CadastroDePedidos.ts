@@ -1,3 +1,4 @@
+/*
 import { Pedido } from '../../gui/ap-gui/src/app/pedido';
 
 export class CadastroDePedidos {
@@ -31,3 +32,4 @@ export class CadastroDePedidos {
 	this.pedidos=removed;
   }
 }
+*/

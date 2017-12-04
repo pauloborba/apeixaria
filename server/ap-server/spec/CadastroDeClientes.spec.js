@@ -1,0 +1,60 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const CadastroDeClientes_1 = require("../CadastroDeClientes");
+const cliente_1 = require("../../../gui/ap-gui/src/app/cliente");
+const endereco_1 = require("../../../gui/ap-gui/src/app/endereco");
+describe("O cadastro de clientes", () => {
+    var cadastro;
+    beforeEach(() => cadastro = new CadastroDeClientes_1.CadastroDeClientes());
+    it("é inicialmente vazio", () => {
+        expect(cadastro.getClientes().length).toBe(0);
+    });
+    it("cadastra clientes corretamente", () => {
+        var cliente = new cliente_1.Cliente();
+        cliente.nome = "Julia";
+        cliente.cpf_cnpj = "10110110199";
+        cliente.data_nascimento = "10/10/00";
+        cliente.telefone = "81999567865";
+        cliente.consumidor_final = true;
+        cliente.lojista = false;
+        var enderecoC = new endereco_1.Endereco();
+        enderecoC.bairro = "Boa Viagem";
+        enderecoC.numero = "28";
+        enderecoC.ponto_referencia = "Proximo ao colégio Motivo";
+        enderecoC.rua = "Rua Tenente Joao";
+        cliente.endereco = enderecoC;
+        cadastro.criar(cliente);
+        expect(cadastro.getClientes().length).toBe(1);
+        cliente = cadastro.getClientes()[0];
+        expect(cliente.nome).toBe("Julia");
+        expect(cliente.cpf_cnpj).toBe("10110110199");
+        expect(cliente.data_nascimento).toBe("10/10/00");
+        expect(cliente.telefone).toBe("81999567865");
+        expect(cliente.consumidor_final).toBe(true);
+        expect(cliente.lojista).toBe(false);
+        expect(cliente.endereco.bairro).toBe("Boa Viagem");
+        expect(cliente.endereco.numero).toBe("28");
+        expect(cliente.endereco.ponto_referencia).toBe("Proximo ao colégio Motivo");
+        expect(cliente.endereco.rua).toBe("Rua Tenente Joao");
+    });
+    it("atualiza clientes corretamente", () => {
+        var cliente = new cliente_1.Cliente();
+        cliente.nome = "Julia";
+        cliente.cpf_cnpj = "10110110199";
+        cliente.data_nascimento = "10/10/00";
+        cliente.telefone = "81999567865";
+        cliente.consumidor_final = true;
+        cliente.lojista = false;
+        var enderecoC = new endereco_1.Endereco();
+        enderecoC.bairro = "Boa Viagem";
+        enderecoC.numero = "28";
+        enderecoC.ponto_referencia = "Proximo ao colégio Motivo";
+        enderecoC.rua = "Rua Tenente Joao";
+        cliente.endereco = enderecoC;
+        cadastro.criar(cliente);
+        cliente.telefone = "88978967768";
+        cadastro.atualizar(cliente);
+        expect(cliente.telefone).toBe("88978967768");
+    });
+});
+//# sourceMappingURL=CadastroDeClientes.spec.js.map
