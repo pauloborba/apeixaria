@@ -23,6 +23,19 @@ export class ProdutoService {
     .catch(this.tratarErro);
 
   }
+
+  alterar(produto: Produto): Promise<Produto>{
+    return this.http.put(this.apURL + "/produtos",JSON.stringify(produto), {headers: this.headers})
+    .toPromise()
+    .then(res => {
+       if (res.json().success) {
+         return produto;
+      } else {
+        return null;
+      }})
+    .catch(this.tratarErro);
+  }
+
   getProdutos(): Promise<Produto[]> {
     return this.http.get(this.apURL + "/produtos")
     .toPromise()

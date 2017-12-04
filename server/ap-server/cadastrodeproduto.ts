@@ -11,7 +11,18 @@ export class CadastroDeProdutos {
     return result;
   }
 
+  alterar(produto: Produto): Produto {
+    var result;
+    for(let i of this.produtos){
+      if (i.codigo == produto.codigo) result = i;
+    }
+    if(result) result.copyFrom(produto);
+    return result;
+  }
+
+
   getProdutos(): Produto[] {
     return this.produtos;
   }
+  
 }

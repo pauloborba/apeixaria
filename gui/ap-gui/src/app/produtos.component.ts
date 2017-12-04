@@ -55,14 +55,21 @@ export class ProdutosComponent implements OnInit {
     return false;
  } 
 
-   ngOnInit(): void {
-    console.log();
-    this.produtoService.getProdutos()
-        .then(prods => this.produtos = prods)
-        .catch(erro => alert(erro));
-  }
-  onMove(): void {
-  }
+    alterarValor(p: Produto): void {
+     this.produtoService.alterar(p)
+     .catch(erro => alert(erro));
+    }
+
+    
+    ngOnInit(): void {
+     console.log();
+     this.produtoService.getProdutos()
+         .then(prods => this.produtos = prods)
+         .catch(erro => alert(erro));
+    }
+
+    onMove(): void {
+    }
 
 
 }

@@ -41,7 +41,7 @@
     <h3>Camarões</h3>
     <ng-container *ngFor="let prod of produtos">
         <table id="camarões-table">
-            <tr *ngIf="prod.categoria == 'camarões'" id="id-camarões-{{prod.codigo}}">
+            <tr *ngIf="prod.categoria == 'camarões'" id="id-{{prod.codigo}}">
                 <lista-produtos [prod]="prod"></lista-produtos>
             </tr>
         </table>

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Produto } from './produto';
+import { ProdutosComponent } from './produtos.component'
+
  
 @Component({
   selector: 'lista-produtos',
@@ -8,9 +10,13 @@ import { Produto } from './produto';
 export class ListaProdutosComponent implements OnInit {
   @Input() prod: Produto;
  
-  constructor() { }
- 
+  constructor(private produtoComponent: ProdutosComponent) { }
+
   ngOnInit() {
   }
- 
+
+  alterarValor(produto: Produto){
+   this.produtoComponent.alterarValor(produto);
+  }
+
 }

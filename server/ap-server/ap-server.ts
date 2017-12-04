@@ -32,6 +32,17 @@ app.post('/produtos', function (req: express.Request, res: express.Response) {
   }
 })
 
+app.put('/produtos', function (req: express.Request, res: express.Response) {
+  console.log("entrou no ap")
+  var prod: Produto = <Produto> req.body;
+  prod = cadastro.alterar(prod);
+  if (prod) {
+    res.send({"success": "O produto foi atualizado com sucesso"});
+  } else {
+    res.send({"failure": "O produto não pode ser atualizado"});
+  }
+})
+
 var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
