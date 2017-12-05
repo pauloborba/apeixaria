@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="contabilidade.component.css">
+</head>
+<body>
+	<div class="body">
+		<div class = "pageContent">
+			<div class="contabilidadeHeader">
+				<span>Contabilidade</span>
+			</div>
+
+			<div class="contabilidadeContent">
+				<div class="contabilidadeNavRow">
+					<button id="diario" class="nav"(click)="Diario()" > Diário </button>
+					<button id="semanal" class="nav"(click)="Semanal()"> Semanal </button>
+					<button id="mensal" class="nav"(click)="Mensal()"> Mensal </button>
+				</div>
+				<div class="contabilidadeRow">
+					<div>
+						<label >Lucro: R$</label>
+						<label id="lucro" [(ngModel)]="lucro"></label>
+					</div>
+					<div>
+						<label>Bruto: R$</label>
+						<label id="bruto" [(ngModel)]="bruto"></label>
+					</div>
+				</div>
+			</div>
+			<div class="Produtos">Produtos</div>
+			<div class="contabilidadeFooter">
+					<table>
+						<tr *ngFor="let a of contabilidade.ArrayProduto" name="arrayProduto">
+							<td name="nomeProduto"><b>{{a.produto.nome}}</b></td>
+							<td>Lucro: R$ </td>
+							<td name="lucroProduto">{{a.lucro}}</td>
+							<td>Bruto: R$ </td>
+							<td name="brutoProduto">{{a.bruto}}</td>
+							<td>Quantidade:</td>
+							<td name="">{{a.peso}}</td>
+							<td>{{a.produto.unid}}</td>
+						</tr>
+					</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
