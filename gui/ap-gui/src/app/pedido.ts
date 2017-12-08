@@ -1,12 +1,13 @@
-
+/*
 import { Cliente } from './cliente';
 import { ItemDeCompra } from './itemdecompra';
 
 export class Pedido {
+  codigo: number;
   cliente: Cliente;
   lista: ItemDeCompra[];
-  valorTotal: decimal;
-  desconto: decimal;
+  valorTotal: number;
+  desconto: number;
   tipoDesconto: string;
   dataPedido: Date;
   dataEntrega: Date;
@@ -21,18 +22,19 @@ export class Pedido {
   }
 
   clean(): void {
+    this.codigo=0;
     this.cliente= new Cliente();
     this.lista = [];
     this.valorTotal = 0;
     this.desconto =0;
-    tipoDesconto = "";
-    dataPedido = new Date();
-    dataEntrega = new Date();
-    condicaoPagamento = "";
-    localRetirada = "";
-    cancelado = false;
-    entregue = false;
-    pago = false;
+    this.tipoDesconto = "";
+    this.dataPedido = new Date();
+    this.dataEntrega = new Date();
+    this.condicaoPagamento = "";
+    this.localRetirada = "";
+    this.cancelado = false;
+    this.entregue = false;
+    this.pago = false;
   }
 
   clone(): Pedido {
@@ -42,6 +44,7 @@ export class Pedido {
   }
 
   copyFrom(from: Pedido): void {
+    this.codigo= from.codigo;
     this.cliente = from.cliente;
     this.valorTotal = from.valorTotal;
     this.desconto=from.desconto;
@@ -57,9 +60,10 @@ export class Pedido {
   }
 
   copyListaFrom(from: ItemDeCompra[]): void {
-    this.lista = []];
-    for i in from {
+    this.lista = [];
+    for (var i=0; i<from.length;i++){
       this.lista[i] = from[i];
     }
   }
 }
+*/

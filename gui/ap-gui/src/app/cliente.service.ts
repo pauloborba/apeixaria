@@ -13,15 +13,28 @@ export class ClienteService {
   constructor(private http: Http) { }
 
   criar(cliente: Cliente): Promise<Cliente> {
-    //post
+    return this.http.post(this.taURL + '/cliente', JSON.stringify(cliente), {headers: this.headers})
+    .toPromise()
+    .then(res => {
+       if (res.json().success) {return cliente; } else {return null; }
+    })
+    .catch(this.tratarErro);
   }
 
   atualizar(cliente: Cliente): Promise<Cliente> {
-    //put
+    return this.http.put(this.taURL + '/cliente', JSON.stringify(cliente), {headers: this.headers})
+    .toPromise()
+    .then(res => {
+       if (res.json().success) {return cliente; } else {return null; }
+    })
+    .catch(this.tratarErro);
   }
 
   getClientes(): Promise<Cliente[]> {
-    //get
+    return this.http.get(this.taURL + '/clientes')
+    .toPromise()
+    .then(res => res.json() as Cliente[])
+    .catch(this.tratarErro);
   }
 
   private tratarErro(erro: any): Promise<any> {

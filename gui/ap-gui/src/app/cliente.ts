@@ -22,12 +22,7 @@ export class Cliente {
       this.email = '';
       this.consumidor_final = false;
       this.lojista = false;
-    }
-
-    clone(): Cliente {
-      const cliente: Cliente = new Cliente();
-      cliente.copyFrom(this);
-      return cliente;
+      this.endereco = new Endereco();
     }
 
     copyFrom(from: Cliente): void {
