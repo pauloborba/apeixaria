@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
  
 import { Contabilidade } from './contabilidade';
 import { ContabilidadeService } from './contabilidade.service';
+import { RegistroProdutoComponent} from '/.registroproduto.component';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +22,13 @@ export class ContabilidadeComponent implements OnInit {
 		for (let i in listaDeCompra){
 			var itemDeCompra = listaDeCompra[i];
 			var produto = itemDeCompra.produto;
+			var indice = ProcurarProduto(produto);
 			var preco = produto.Valor;
 			var quantidade = itemDeCompra.quantidade;
 			var desconto = pedido.Desconto;
 			var bruto = preco * quantidade;
 			var lucro = (bruto/100) * desconto;
+			incrementarValorProduto(bruto);
 			incrementarValor(lucro, bruto);
 		}
 		this.contabilidadeService.atualizar(this.contabilidade);
@@ -34,25 +37,41 @@ export class ContabilidadeComponent implements OnInit {
 	diario(): void {
 		this.lucro = this.contabilidade.lucroDiario;
 		this.bruto = this.contabilidade.brutoDiario;
+		for(let i of ArrayProduto){
+			i.bruto = i.brutoDiario;
+		}
   	}
 
   	semanal(): void {
 		this.lucro = this.contabilidade.lucroSemanal;
 		this.bruto = this.contabilidade.brutoSemanal;
+		for(let i of ArrayProduto){
+			i.bruto = i.brutoSemanal;
+		}
   	}
 
   	mensal(): void {
 		this.lucro = this.contabilidade.lucroMensal;
 		this.bruto = this.contabilidade.brutoMensal;
+		for(let i of ArrayProduto){
+			i.bruto = i.brutoMensal;
+		}
   	}
 
-	incrementarValor(lucro: decimal, bruto: decimal){ //V1
+	incrementarValor(lucro: decimal, bruto: decimal){ 
 		contabilidade.lucroDiario +=  lucro;
 		contabilidade.lucroSemanal += lucro;
 		contabilidade.lucroMensal += lucro;
 		contabilidade.brutoDiario += bruto;
 		contabilidade.brutoSemanal += bruto;
 		contabilidade.brutoMensal += bruto;
+	}
+
+	incrementarValorProduto(bruto: decimal, indice: integer){
+		var prod: RegistroProduto = this.contabilidade.ArrayProduto[indice];
+		prod.brutoDiario += bruto;
+		prod.brutoSemanal += bruto;
+		prod.brutoMensal += bruto;
 	}
 
 	ngOnInit(): void {
