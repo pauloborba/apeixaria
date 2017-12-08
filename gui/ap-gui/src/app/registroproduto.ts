@@ -3,6 +3,10 @@ import {Pedido} from './pedido';
 
 export class RegistroProduto{
 		produto: Produto;
+		lucro: decimal;
+		lucroDiario: decimal;
+		lucroSemanal: decimal;
+		lucroMensal: decimal;
 		bruto: decimal;
 		brutoDiario: decimal;
 		brutoSemanal: decimal; 
@@ -18,6 +22,10 @@ export class RegistroProduto{
 
 	clean() = void{
 		this.produto = new Produto();
+		this.lucro = 0
+		this.lucroDiario = 0 
+		this.lucroSemanal = 0 
+		this.lucroMensal = 0 
 		this.bruto = 0
 		this.brutoDiario = 0 
 		this.brutoSemanal = 0 
@@ -36,6 +44,10 @@ export class RegistroProduto{
 
 	copyFrom(from: RegistroProduto): void {
 		this.copyProdutoFrom(from.produto); 
+		this.lucro = from.lucro;
+		this.lucroDiario = from.lucroDiario;
+		this.lucroSemanal = from.lucroSemanal;
+		this.lucroMensal = from.lucroMensal;
 		this.bruto = from.bruto;
 		this.brutoDiario = from.brutoDiario;
 		this.brutoSemanal = from.brutoSemanal;
