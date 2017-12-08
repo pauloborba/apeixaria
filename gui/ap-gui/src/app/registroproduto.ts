@@ -7,6 +7,10 @@ export class RegistroProduto{
 		brutoDiario: decimal;
 		brutoSemanal: decimal; 
 		brutoMensal: decimal;
+		peso: decimal;
+		pesoDiario: decimal; 
+		pesoSemanal: decimal;
+		pesoMensal: decimal;
 
 	constructor(){
 		this.clean();
@@ -18,6 +22,10 @@ export class RegistroProduto{
 		this.brutoDiario = 0 
 		this.brutoSemanal = 0 
 		this.brutoMensal = 0
+		this.peso = 0
+		this.pesoDiario = 0 
+		this.pesoSemanal = 0 
+		this.pesoMensal = 0
 	}
 
 	clone(): RegistroProduto {
@@ -32,6 +40,10 @@ export class RegistroProduto{
 		this.brutoDiario = from.brutoDiario;
 		this.brutoSemanal = from.brutoSemanal;
 		this.brutoMensal = from.brutoMensal;
+		this.peso = from.peso;
+		this.pesoDiario = from.pesoDiario;
+		this.pesoSemanal = from.pesoSemanal;
+		this.pesoMensal = from.pesoMensal;
 	}
 
 	copyProdutoFrom(from: Produto): void{
