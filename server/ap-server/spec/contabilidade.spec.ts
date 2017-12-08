@@ -26,6 +26,7 @@ describe("Atualização dos valores de contabilidade", () => {
     pedido.cancelado = false;
     pedido.entregue = true;
     pedido.pago = true;
+    pedido.desconto = 25;
     var product: Produto = new Produto();
     product.codigo=  100;
     product.nome= "Camarão";
@@ -48,6 +49,7 @@ describe("Atualização dos valores de contabilidade", () => {
     expect(pedido.pago).toBe(true);
     expect(pedido.valorTotal).toBe(12);
     expect(contabilidade.bruto).toBe(12);
+    expect(contabilidade.lucro).toBe(9);
   })
 
 })
